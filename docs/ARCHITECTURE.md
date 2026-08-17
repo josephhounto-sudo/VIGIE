@@ -71,8 +71,8 @@ montre que l'équipe comprend la physique du signal.
   [`docs/construction_rf.md`](construction_rf.md) pour le pourquoi,
   [`docs/guide_pratique_rf.md`](guide_pratique_rf.md) pour le comment,
   étape par étape, sans prérequis technique) : Remote ID via ESP32
-  (quelques euros, prouvé, prêt pour la démo) en priorité, détection
-  d'énergie RF générique en extension si le temps le permet.
+  (prouvé, prêt pour la démo) en priorité, détection d'énergie RF
+  générique en extension si le temps le permet.
 - La carte de risque — squelette fonctionnel désormais disponible (`src/dashboard/index.html`), teste avec les événements simulés ; reste à brancher sur Supabase pour devenir réellement "vivante".
 - Vérification légale de l'écoute radio passive au Togo — pas encore faite (voir `docs/materiel.md`, synthèse déjà réunie, confirmation écrite ARCEP à obtenir avant tout test terrain).
 

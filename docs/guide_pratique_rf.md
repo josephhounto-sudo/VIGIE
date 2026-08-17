@@ -52,9 +52,9 @@ capteur du projet.
 ## Étape 2 — Construire un capteur dédié (une fois l'étape 1 validée)
 
 Si le test au téléphone fonctionne, l'étape suivante est une petite
-carte électronique appelée **ESP32** (quelques euros, en vente en
-ligne). Elle fait la même chose que le téléphone, mais en continu, sans
-mobiliser un smartphone.
+carte électronique appelée **ESP32**, facile à trouver en ligne. Elle
+fait la même chose que le téléphone, mais en continu, sans mobiliser un
+smartphone.
 
 Ce qu'il faut concrètement :
 1. Acheter une carte ESP32 (n'importe quel modèle de base convient).

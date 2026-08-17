@@ -14,7 +14,7 @@ position pilote) en WiFi Beacon ou Bluetooth — norme ASTM F3411 /
 OpenDroneID. Un microcontrôleur ESP32 reçoit ça nativement, sans aucune
 chaîne RF additionnelle.
 
-- Coût : de l'ordre de quelques euros (carte ESP32 seule).
+- Coût : accessible, carte ESP32 seule, sans chaîne RF additionnelle.
 - Firmware existant et maintenu : ArduPilot/ArduRemoteID (côté
   transmission, référence de conformité) ; réception via
   opendroneid-core-c ou des projets dérivés (ex. Mesh-Mapper,
