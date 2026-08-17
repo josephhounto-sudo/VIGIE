@@ -59,9 +59,9 @@ toujours prévoir un mode de secours).
 
 ## Ce qui reste à construire (honnêtement, sans enjoliver)
 
-- Le capteur RF physique — rien n'existe encore, budget ~40-55€.
-- La carte de risque visuelle — aucune brique réutilisable, à construire de zéro.
-- Vérification légale de l'écoute radio passive au Togo — pas encore faite.
+- Le capteur RF physique — rien n'existe encore, chaîne complète (dongle + downconverter) budgétée à ~50-70€.
+- La carte de risque — squelette fonctionnel désormais disponible (`src/dashboard/index.html`), teste avec les événements simulés ; reste à brancher sur Supabase pour devenir réellement "vivante".
+- Vérification légale de l'écoute radio passive au Togo — pas encore faite (voir `docs/materiel.md`, synthèse déjà réunie, confirmation écrite ARCEP à obtenir avant tout test terrain).
 
 ## Sur l'automatisation
 

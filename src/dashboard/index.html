@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<title>VIGIE — Carte de risque</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<style>
+  body { margin: 0; font-family: sans-serif; }
+  #map { height: 100vh; width: 100%; }
+  .legend { position: absolute; bottom: 20px; left: 20px; z-index: 1000;
+    background: white; padding: 10px 14px; border-radius: 8px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.3); font-size: 13px; }
+  .legend span { display: inline-block; width: 10px; height: 10px;
+    border-radius: 50%; margin-right: 6px; }
+  .status-bar { position: absolute; top: 10px; left: 50%; transform: translateX(-50%);
+    z-index: 1000; background: white; padding: 6px 16px; border-radius: 20px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.3); font-size: 13px; }
+</style>
+</head>
+<body>
+
+<div class="status-bar" id="status">Chargement des evenements...</div>
+<div id="map"></div>
+<div class="legend">
+  <div><span style="background:#2ecc71"></span>Criticite faible (0-40)</div>
+  <div><span style="background:#f39c12"></span>Criticite moyenne (40-70)</div>
+  <div><span style="background:#e74c3c"></span>Criticite elevee (70+)</div>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+/*
+ * VIGIE -- Carte de risque (squelette fonctionnel)
+ *
+ * TODO avant mise en production reelle :
+ *   1. Remplacer la source de donnees ci-dessous par un appel a
+ *      l'API Supabase (table `evenements`), plutot que le fichier
+ *      JSON local -- voir SOURCE_URL.
+ *   2. Ajouter un rafraichissement automatique (polling ou websocket)
+ *      pour que la carte soit reellement "vivante" comme decrit dans
+ *      la note conceptuelle.
+ *   3. Ajouter le rendu des correlations (src/correlation) sous forme
+ *      de lignes reliant les evenements corrigneslies.
+ *
+ * Pour tester des maintenant, sans Supabase :
+ *   1. python src/simulate/generate_test_events.py
+ *   2. Copier evenements_simules.json a cote de ce fichier index.html
+ *   3. Ouvrir index.html dans un navigateur (ou servir via
+ *      `python -m http.server` depuis ce dossier)
+ */
+
+const SOURCE_URL = "evenements_simules.json"; // TODO: remplacer par l'endpoint Supabase
+
+const LAT_DEFAUT = 6.1656, LON_DEFAUT = 1.2545; // aeroport de Lome, centre par defaut
+
+const map = L.map("map").setView([LAT_DEFAUT, LON_DEFAUT], 12);
+L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+  attribution: "&copy; OpenStreetMap contributors",
+  maxZoom: 19,
+}).addTo(map);
+
+function couleurCriticite(c) {
+  if (c === null || c === undefined) return "#95a5a6";
+  if (c >= 70) return "#e74c3c";
+  if (c >= 40) return "#f39c12";
+  return "#2ecc71";
+}
+
+function afficherEvenements(evenements) {
+  let comptes = 0;
+  evenements.forEach((e) => {
+    if (e.latitude == null || e.longitude == null) return;
+    const couleur = couleurCriticite(e.criticite);
+    const marker = L.circleMarker([e.latitude, e.longitude], {
+      radius: 9,
+      fillColor: couleur,
+      fillOpacity: 0.85,
+      color: "#ffffff",
+      weight: 1.5,
+    }).addTo(map);
+    marker.bindPopup(
+      "<b>" + (e.titre || "Evenement") + "</b><br/>" +
+      "Source : " + (e.source_type || "inconnue") + "<br/>" +
+      "Nature : " + (e.nature || "non classee") + "<br/>" +
+      "Criticite : " + (e.criticite ?? "n/a") + "<br/>" +
+      (e.description ? e.description + "<br/>" : "") +
+      "<small>" + (e.horodatage || "") + "</small>"
+    );
+    comptes++;
+  });
+  document.getElementById("status").textContent =
+    comptes + " evenement(s) affiche(s)";
+}
+
+fetch(SOURCE_URL)
+  .then((r) => {
+    if (!r.ok) throw new Error("fichier introuvable : " + SOURCE_URL);
+    return r.json();
+  })
+  .then(afficherEvenements)
+  .catch((err) => {
+    document.getElementById("status").textContent =
+      "Aucune donnee chargee (" + err.message + ") -- voir TODO dans le code";
+    console.error(err);
+  });
+</script>
+
+</body>
+</html>
