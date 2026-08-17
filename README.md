@@ -8,6 +8,10 @@
 > **Nouveau dans l'équipe / non-développeur ?** Lis d'abord
 > [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) — aucune compétence
 > technique requise.
+>
+> **Règles du concours ?** Voir
+> [`docs/programme_concours.md`](docs/programme_concours.md) — calendrier,
+> dossier requis, dotation.
 
 ## Principe en une phrase
 
