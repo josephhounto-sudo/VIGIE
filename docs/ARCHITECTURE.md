@@ -59,9 +59,10 @@ toujours prévoir un mode de secours).
 
 ## Ce qui reste à construire (honnêtement, sans enjoliver)
 
-- Le capteur RF physique — deux voies DIY identifiées pour 2,4 GHz (voir
-  [`docs/construction_rf.md`](construction_rf.md)) ; 5,8 GHz volontairement
-  hors scope de la démonstration, aucune source ne le justifie encore.
+- Le capteur RF physique — approche en deux couches désormais (voir
+  [`docs/construction_rf.md`](construction_rf.md)) : Remote ID via ESP32
+  (quelques euros, prouvé, prêt pour la démo) en priorité, détection
+  d'énergie RF générique en extension si le temps le permet.
 - La carte de risque — squelette fonctionnel désormais disponible (`src/dashboard/index.html`), teste avec les événements simulés ; reste à brancher sur Supabase pour devenir réellement "vivante".
 - Vérification légale de l'écoute radio passive au Togo — pas encore faite (voir `docs/materiel.md`, synthèse déjà réunie, confirmation écrite ARCEP à obtenir avant tout test terrain).
 

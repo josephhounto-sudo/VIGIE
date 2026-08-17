@@ -1,66 +1,75 @@
-# Construction RF DIY — faisabilité et choix de portée
+# Construction RF — décision finale (deux couches)
 
-> Analyse du 17/08/2026, basée sur une recherche sourcée (Manus, vérifiée
-> par Claude). Document séparé de `docs/materiel.md` — ne contient aucun
-> chiffre de budget, volontairement, en attente de confirmation.
+> Mis à jour le 17/08/2026. Remplace entièrement la version précédente
+> (qui ne considérait que la voie downconverter). Toujours aucun chiffre
+> de budget définitif ici — voir `docs/materiel.md` une fois confirmé.
 
-## Décision de portée : 2,4 GHz uniquement pour la démonstration
+## Décision : deux couches complémentaires, pas une seule technologie
 
-Aucune source consultée ne présente un montage RTL-SDR pour 5,8 GHz qui
-soit à la fois complet, publiquement vérifiable et reproductible.
-L'architecture théorique (5,8 GHz − 5 GHz OL = 800 MHz FI) est plausible
-mais systématiquement qualifiée de "projet avancé à valider au banc" par
-les sources techniques les plus sérieuses (EEVblog, MyriadRF).
+### Couche 1 — Réception Remote ID (MVP, à construire en premier)
 
-**VIGIE cible donc exclusivement la bande 2,4 GHz** pour le prototype et
-la démonstration — bande la plus utilisée pour le lien de commande de la
-majorité des drones grand public. Ce n'est pas un renoncement mais un
-choix de portée assumé, à documenter explicitement dans le dossier de
-conception : couverture de la bande la plus répandue et la mieux
-prouvée, plutôt qu'une promesse de couverture totale non tenable dans
-le calendrier du concours.
+Depuis l'obligation FAA (2023) et l'équivalent européen, la majorité des
+drones grand public diffusent leur identité (position, altitude,
+position pilote) en WiFi Beacon ou Bluetooth — norme ASTM F3411 /
+OpenDroneID. Un microcontrôleur ESP32 reçoit ça nativement, sans aucune
+chaîne RF additionnelle.
 
-## Deux voies DIY documentées pour 2,4 GHz
+- Coût : de l'ordre de quelques euros (carte ESP32 seule).
+- Firmware existant et maintenu : ArduPilot/ArduRemoteID (côté
+  transmission, référence de conformité) ; réception via
+  opendroneid-core-c ou des projets dérivés (ex. Mesh-Mapper,
+  esp32-c3-remote-id).
+- Portées réelles rapportées : 5 à 15 km selon l'environnement.
+- Aucune compétence RF/soudure requise — flashage de firmware existant.
 
-### Voie principale recommandée — 24DownConvert (Ian Wraith)
+**C'est la voie retenue comme prototype démontrable pour la
+démonstration de décembre.**
 
-Translation ~2,45 GHz → ~1,45 GHz (dans la plage native du RTL-SDR V4),
-via mélangeur ADL5350 et oscillateur local ADF4350 piloté par STM32.
+### Couche 2 — Détection d'énergie RF générique (objectif d'extension)
 
-- Reproductibilité : élevée — dépôt GitHub complet, câblage SPI
-  documenté, résultat rapporté sur Wi-Fi/Zigbee/Bluetooth/ISM.
-- Compétence requise : STM32 + bus SPI (firmware).
-- Source : github.com/IanWraith/24DownConvert, corroboré par rtl-sdr.com.
+Voir la voie downconverter déjà documentée (Ian Wraith / SUP-2400,
+bande 2,4 GHz). Détecte tout émetteur 2,4 GHz, y compris un drone
+délibérément non conforme qui ne diffuse aucun Remote ID.
 
-### Voie alternative — SUP-2400 modifié (KD0CQ)
+- Statut : DIY à construire, plus complexe, risque d'échec plus élevé.
+- Rôle : extension si le temps et les compétences de l'équipe le
+  permettent après la couche 1. Non indispensable pour un premier
+  prototype fonctionnel.
 
-Conversion d'un tuner satellite DirecTV SUP-2400 par modification CMS.
+## Pourquoi deux couches, et pas une seule — limite assumée sans détour
 
-- Reproductibilité : moyenne — plusieurs réplications indépendantes
-  confirmées (détection Wi-Fi à 2,447 GHz, clavier sans fil à 2,465 GHz),
-  mais résultat sensible à la qualité de soudure et au filtrage.
-- Compétence requise : soudure de composants montés en surface (CMS).
-- Avantage : compatible avec l'approche "matériaux de récupération" du
-  reste du projet, si un tuner DirecTV peut être trouvé/récupéré.
-- Source : kd0cq.com (tutoriel), corroboré par plusieurs réplications
-  communautaires sur rtl-sdr.com.
+Le Remote ID identifie les drones **coopératifs**. Un acteur hostile n'a
+aucune raison de le diffuser, et des outils existent déjà pour le
+falsifier (un projet identifié génère de faux signaux Remote ID pour
+simuler plusieurs drones fictifs). Présenter Remote ID seul comme une
+solution de sûreté serait trompeur devant un jury de régulateurs — ce
+n'est qu'une brique de conscience de trafic légitime. La couche 2 est
+ce qui répond réellement au scénario de menace (drone non coopératif).
 
-## Conséquence directe sur le recrutement
+**Angle d'innovation supplémentaire, à explorer une fois la couche 1
+stable** : un écart entre l'identité Remote ID annoncée et la signature
+RF réelle observée (couche 2) est lui-même un signal d'anomalie
+exploitable — détection de spoofing. Non prioritaire avant le 31 août,
+mais à garder en tête pour le dossier de conception du 30 septembre.
 
-Ce choix technique précise le profil à chercher en priorité pour le
-volet matériel : une personne ayant déjà manipulé un microcontrôleur
-(STM32, Arduino ou ESP32) et idéalement un bus SPI — pas seulement
-"électronique" en général.
+## Intégration au schéma commun
 
-## Rappel légal (déjà établi dans docs/materiel.md)
+Aucun changement de schéma nécessaire. Le Remote ID est un
+`source_type` de plus dans la table `evenements` (ex. `remote_id`),
+au même titre que `rf_drone` (couche 2) et `agent_terrain`. L'architecture
+à sources multiples posée dès le départ absorbe cette découverte sans
+refonte.
 
-Réception seule, jamais de décodage de contenu de réseau tiers, mesure
-agrégée d'occupation/puissance uniquement. Confirmation écrite ARCEP à
-obtenir avant tout test terrain réel (non bloquant pour le 31 août).
+## Rappel légal (inchangé)
+
+Réception seule dans les deux couches, jamais de décodage de contenu de
+réseau tiers hors du protocole Remote ID lui-même (qui est un protocole
+public de diffusion, pas une communication privée). Confirmation écrite
+ARCEP toujours recommandée avant tout test terrain réel.
 
 ## Ce qui reste ouvert
 
-- Choix final entre les deux voies : dépend du profil recruté et du
-  matériel réellement disponible (tuner DirecTV à récupérer ou non).
-- Aucun chiffrage budgétaire dans ce document — voir `docs/materiel.md`
-  une fois la voie choisie et confirmée.
+- Choix définitif du firmware de réception Remote ID à adapter (parmi
+  les projets identifiés) — à trancher une fois un ESP32 en main.
+- La couche 2 (downconverter) reste conditionnée au profil recruté
+  (STM32/SPI ou soudure CMS).
