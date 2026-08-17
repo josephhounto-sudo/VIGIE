@@ -23,6 +23,10 @@
 > contient le protocole de travail (règles de push, triage des
 > recherches Manus, conventions du schéma) — à installer une fois dans
 > Claude pour ne pas le réexpliquer à chaque session.
+>
+> **Tu veux juste faire quelque chose de concret aujourd'hui, sans
+> bagage technique ?** Va directement sur
+> [`docs/guide_pratique_rf.md`](docs/guide_pratique_rf.md).
 
 ## Principe en une phrase
 

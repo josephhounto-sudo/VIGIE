@@ -68,7 +68,9 @@ montre que l'équipe comprend la physique du signal.
 ## Ce qui reste à construire (honnêtement, sans enjoliver)
 
 - Le capteur RF physique — approche en deux couches désormais (voir
-  [`docs/construction_rf.md`](construction_rf.md)) : Remote ID via ESP32
+  [`docs/construction_rf.md`](construction_rf.md) pour le pourquoi,
+  [`docs/guide_pratique_rf.md`](guide_pratique_rf.md) pour le comment,
+  étape par étape, sans prérequis technique) : Remote ID via ESP32
   (quelques euros, prouvé, prêt pour la démo) en priorité, détection
   d'énergie RF générique en extension si le temps le permet.
 - La carte de risque — squelette fonctionnel désormais disponible (`src/dashboard/index.html`), teste avec les événements simulés ; reste à brancher sur Supabase pour devenir réellement "vivante".
