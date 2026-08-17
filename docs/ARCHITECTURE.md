@@ -59,7 +59,9 @@ toujours prévoir un mode de secours).
 
 ## Ce qui reste à construire (honnêtement, sans enjoliver)
 
-- Le capteur RF physique — rien n'existe encore, chaîne complète (dongle + downconverter) budgétée à ~50-70€.
+- Le capteur RF physique — deux voies DIY identifiées pour 2,4 GHz (voir
+  [`docs/construction_rf.md`](construction_rf.md)) ; 5,8 GHz volontairement
+  hors scope de la démonstration, aucune source ne le justifie encore.
 - La carte de risque — squelette fonctionnel désormais disponible (`src/dashboard/index.html`), teste avec les événements simulés ; reste à brancher sur Supabase pour devenir réellement "vivante".
 - Vérification légale de l'écoute radio passive au Togo — pas encore faite (voir `docs/materiel.md`, synthèse déjà réunie, confirmation écrite ARCEP à obtenir avant tout test terrain).
 
