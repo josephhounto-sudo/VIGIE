@@ -13,6 +13,11 @@
 > [`docs/programme_concours.md`](docs/programme_concours.md) — calendrier,
 > dossier requis, dotation.
 >
+> **Envie d'un exercice pratique à coût nul dès ce soir ?** Voir
+> [`docs/guide_diy_reflecteur.md`](docs/guide_diy_reflecteur.md) — un
+> réflecteur radio en carton et papier aluminium, protocole de mesure
+> inclus. Démo pédagogique, pas le système de détection lui-même.
+>
 > **Tu utilises Claude sur ce projet ?** Le skill
 > [`.claude-skills/vigie-project`](.claude-skills/vigie-project/SKILL.md)
 > contient le protocole de travail (règles de push, triage des

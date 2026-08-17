@@ -57,6 +57,14 @@ moteur qui a déjà tourné en conditions réelles, avec ses leçons déjà
 apprises (notamment : ne jamais dépendre d'un seul fournisseur d'IA,
 toujours prévoir un mode de secours).
 
+## Bonus pédagogique — à coût nul, dès ce soir
+
+Un réflecteur radio en carton et papier aluminium, avec protocole de
+mesure complet, pour illustrer la directivité RF devant le jury en
+décembre. Guide complet : [`docs/guide_diy_reflecteur.md`](guide_diy_reflecteur.md).
+Ce n'est pas le système de détection — juste une démonstration qui
+montre que l'équipe comprend la physique du signal.
+
 ## Ce qui reste à construire (honnêtement, sans enjoliver)
 
 - Le capteur RF physique — approche en deux couches désormais (voir
