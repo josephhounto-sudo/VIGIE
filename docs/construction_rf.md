@@ -35,6 +35,11 @@ délibérément non conforme qui ne diffuse aucun Remote ID.
 - Rôle : extension si le temps et les compétences de l'équipe le
   permettent après la couche 1. Non indispensable pour un premier
   prototype fonctionnel.
+- **Confirmation croisée (3 recherches indépendantes, 17/08/2026)** :
+  aucune solution à coût matériel nul n'existe pour cette couche. Un
+  objet gratuit (antenne, réflecteur) ne remplace ni le tuner, ni la
+  conversion de fréquence — le RTL-SDR V4 plafonne à 1,766 GHz, un
+  downconverter reste incontournable. Ce n'est plus à revérifier.
 
 ## Pourquoi deux couches, et pas une seule — limite assumée sans détour
 
@@ -73,3 +78,34 @@ ARCEP toujours recommandée avant tout test terrain réel.
   les projets identifiés) — à trancher une fois un ESP32 en main.
 - La couche 2 (downconverter) reste conditionnée au profil recruté
   (STM32/SPI ou soudure CMS).
+
+## Test à coût nul de la Couche 1 — faisable cette semaine
+
+Contrairement à la Couche 2, la Couche 1 peut être testée **avant même
+d'acheter un ESP32** : le protocole Remote ID est une diffusion
+publique (pas une communication privée), recevable par l'application
+open source `opendroneid/receiver-android`, installable directement sur
+un téléphone déjà possédé.
+
+**Point d'attention à ne pas manquer** : ne pas confondre avec les
+applications de scan WiFi grand public (WiFiAnalyzer, NetSpot,
+WiFiman) — utiles pour comparer un routeur, mais elles ne décodent pas
+les trames Remote ID. Seule une application dédiée OpenDroneID convient
+pour ce test.
+
+**Inconnue restante** : le modèle exact de l'Infinix de Joe n'est pas
+vérifié pour le support WiFi NAN / la cadence de scan Bluetooth
+nécessaires. Le test lui-même (installer l'app et observer) est le
+moyen le plus rapide de lever cette inconnue — moins cher que toute
+recherche supplémentaire.
+
+## Méthodologie de mesure réutilisable (pour la calibration future de la Couche 2)
+
+Protocole validé par plusieurs sources concordantes, à réutiliser tel
+quel une fois un capteur Couche 2 construit : position fixe, 5 relevés
+par configuration, comparer les médianes (jamais un pic isolé), ne
+changer qu'un seul paramètre entre deux séries. Un réflecteur passif
+(carton + papier aluminium) peut aussi servir de démonstration
+pédagogique de directivité pour la présentation de décembre — à
+présenter explicitement comme un exercice illustratif, jamais comme un
+composant du système de détection lui-même.

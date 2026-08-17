@@ -12,6 +12,12 @@
 > **Règles du concours ?** Voir
 > [`docs/programme_concours.md`](docs/programme_concours.md) — calendrier,
 > dossier requis, dotation.
+>
+> **Tu utilises Claude sur ce projet ?** Le skill
+> [`.claude-skills/vigie-project`](.claude-skills/vigie-project/SKILL.md)
+> contient le protocole de travail (règles de push, triage des
+> recherches Manus, conventions du schéma) — à installer une fois dans
+> Claude pour ne pas le réexpliquer à chaque session.
 
 ## Principe en une phrase
 
