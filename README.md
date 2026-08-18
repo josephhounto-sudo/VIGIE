@@ -50,6 +50,10 @@
 >
 > **Quelles données pour tester VIGIE ?**
 > [`docs/donnees.md`](docs/donnees.md).
+>
+> **Prochaines recherches Manus à lancer ?**
+> [`docs/manus_recherches.md`](docs/manus_recherches.md) — prompts prêts,
+> priorisés.
 
 ## Principe en une phrase
 
