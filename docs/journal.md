@@ -7,6 +7,23 @@
 
 ---
 
+## 18/08/2026 (suite) — Interface de signalement agent
+
+**Ce qui a changé :** l'interface graphique pour qu'un agent terrain
+signale un événement existe maintenant (`src/interface/signalement.html`)
+— formulaire mobile-first, géolocalisation en un clic, format conforme
+au schéma commun. **Les 5 blocs du schéma ont désormais tous une
+interface ou un code fonctionnel**, plus aucun n'est vide.
+
+**Pourquoi :** c'était le seul bloc du schéma sans aucune interface —
+la carte de risque affichait des événements, mais rien ne permettait
+d'en créer un humainement.
+
+**À faire ensuite :** brancher `ENVOI_URL` sur Supabase une fois les
+clés configurées (même dépendance que le dashboard et l'orchestrateur).
+
+---
+
 ## 18/08/2026 — Données, cas réels, protocole de test
 
 **Ce qui a changé :**

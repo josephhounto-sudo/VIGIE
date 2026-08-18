@@ -43,7 +43,7 @@ d'alertes à un moment donné.
 
 | Bloc | Rôle en une phrase | Qui s'en occupe |
 |---|---|---|
-| Signalement agent | Un humain remonte un événement depuis le terrain | Volet logiciel (interface) |
+| Signalement agent | Un humain remonte un événement depuis le terrain | Interface fonctionnelle : `src/interface/signalement.html` |
 | Capteur RF | Une petite radio écoute en permanence si un drone non-autorisé émet un signal à proximité | Volet matériel |
 | Classification IA | Un modèle de langage lit chaque événement et décide : c'est confirmé, une fausse alerte, ou à vérifier | Volet logiciel |
 | Corrélation | Le système compare les événements entre eux dans le temps et l'espace pour repérer des tendances | Volet logiciel |

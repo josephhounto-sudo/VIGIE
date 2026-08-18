@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<title>VIGIE — Signaler un événement</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; font-family: -apple-system, sans-serif; background: #f4f5f7;
+    display: flex; justify-content: center; padding: 20px 12px;
+  }
+  .carte {
+    width: 100%; max-width: 420px; background: white; border-radius: 14px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08); padding: 20px;
+  }
+  h1 { font-size: 19px; margin: 0 0 4px 0; }
+  .sous-titre { font-size: 13px; color: #666; margin-bottom: 18px; }
+  label { display: block; font-size: 13px; font-weight: 600; margin: 14px 0 5px; }
+  input, textarea, select {
+    width: 100%; padding: 11px; border: 1px solid #ddd; border-radius: 8px;
+    font-size: 15px; font-family: inherit;
+  }
+  textarea { resize: vertical; min-height: 70px; }
+  .position-bloc {
+    display: flex; gap: 8px; align-items: center; margin-top: 5px;
+  }
+  .position-bloc input { flex: 1; }
+  button.geoloc {
+    padding: 11px 14px; border: none; border-radius: 8px; background: #eef2ff;
+    color: #3949ab; font-size: 14px; white-space: nowrap; cursor: pointer;
+  }
+  button.envoyer {
+    width: 100%; margin-top: 20px; padding: 14px; border: none;
+    border-radius: 10px; background: #2ecc71; color: white; font-size: 16px;
+    font-weight: 600; cursor: pointer;
+  }
+  button.envoyer:disabled { background: #b7e4c7; cursor: not-allowed; }
+  .statut { margin-top: 14px; font-size: 13px; text-align: center; min-height: 18px; }
+  .statut.succes { color: #2ecc71; }
+  .statut.erreur { color: #e74c3c; }
+  .aide { font-size: 12px; color: #999; margin-top: 4px; }
+</style>
+</head>
+<body>
+
+<div class="carte">
+  <h1>Signaler un événement</h1>
+  <div class="sous-titre">Ce que vous envoyez rejoint la même file que
+    les alertes du capteur RF — inutile de juger la gravité vous-même,
+    le système s'en charge.</div>
+
+  <form id="formulaire">
+    <label for="titre">Que se passe-t-il ? (bref)</label>
+    <input id="titre" name="titre" required maxlength="90"
+           placeholder="Ex : comportement suspect près de la clôture nord" />
+
+    <label for="description">Détails</label>
+    <textarea id="description" name="description" maxlength="500"
+              placeholder="Ce que vous avez observé, aussi précisément que possible"></textarea>
+
+    <label>Position</label>
+    <div class="position-bloc">
+      <input id="latitude" name="latitude" placeholder="Latitude" inputmode="decimal" required />
+      <input id="longitude" name="longitude" placeholder="Longitude" inputmode="decimal" required />
+      <button type="button" class="geoloc" id="btn-geoloc">📍 Ma position</button>
+    </div>
+    <div class="aide">Ou entrez les coordonnées manuellement si le GPS
+      n'est pas disponible.</div>
+
+    <label for="source_id">Votre identifiant (agent)</label>
+    <input id="source_id" name="source_id" required placeholder="Ex : agent_02" />
+
+    <button type="submit" class="envoyer" id="btn-envoyer">Envoyer le signalement</button>
+    <div class="statut" id="statut"></div>
+  </form>
+</div>
+
+<script>
+/*
+ * VIGIE -- Interface de signalement agent (squelette fonctionnel)
+ *
+ * TODO avant mise en production reelle :
+ *   1. Remplacer ENVOI_URL par l'endpoint Supabase reel (table
+ *      `evenements`), une fois les cles configurees -- voir
+ *      docs/journal.md pour l'etat des cles.
+ *   2. Ajouter une authentification simple par agent (source_id ne
+ *      doit pas etre a saisie libre en production).
+ *   3. Ajouter un mode hors-ligne (stockage local puis envoi differe)
+ *      pour les zones a connectivite faible -- pertinent au Togo.
+ *
+ * Format produit : conforme au schema commun `evenements`
+ * (schema/migration.sql) -- source_type fixe a "agent_terrain".
+ */
+
+const ENVOI_URL = null; // TODO: URL Supabase REST une fois configuree
+
+document.getElementById("btn-geoloc").addEventListener("click", () => {
+  const statut = document.getElementById("statut");
+  if (!navigator.geolocation) {
+    statut.textContent = "Géolocalisation non disponible sur cet appareil.";
+    statut.className = "statut erreur";
+    return;
+  }
+  statut.textContent = "Localisation en cours...";
+  statut.className = "statut";
+  navigator.geolocation.getCurrentPosition(
+    (pos) => {
+      document.getElementById("latitude").value = pos.coords.latitude.toFixed(6);
+      document.getElementById("longitude").value = pos.coords.longitude.toFixed(6);
+      statut.textContent = "Position récupérée.";
+      statut.className = "statut succes";
+    },
+    () => {
+      statut.textContent = "Impossible d'obtenir la position — entrez-la manuellement.";
+      statut.className = "statut erreur";
+    }
+  );
+});
+
+document.getElementById("formulaire").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const bouton = document.getElementById("btn-envoyer");
+  const statut = document.getElementById("statut");
+
+  const evenement = {
+    source_type: "agent_terrain",
+    source_id: document.getElementById("source_id").value.trim(),
+    titre: document.getElementById("titre").value.trim(),
+    description: document.getElementById("description").value.trim(),
+    latitude: parseFloat(document.getElementById("latitude").value),
+    longitude: parseFloat(document.getElementById("longitude").value),
+    horodatage: new Date().toISOString(),
+    statut: "nouveau",
+  };
+
+  if (!ENVOI_URL) {
+    // Mode test : pas de backend configure -- affiche l'evenement au
+    // lieu de l'envoyer, pour verifier le format sans dependance.
+    console.log("Evenement pret (test, aucun backend configure) :", evenement);
+    statut.textContent = "Mode test : événement affiché en console, pas encore envoyé (backend non configuré).";
+    statut.className = "statut";
+    return;
+  }
+
+  bouton.disabled = true;
+  statut.textContent = "Envoi en cours...";
+  statut.className = "statut";
+
+  try {
+    const reponse = await fetch(ENVOI_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(evenement),
+    });
+    if (!reponse.ok) throw new Error("Réponse serveur : " + reponse.status);
+    statut.textContent = "Signalement envoyé. Merci.";
+    statut.className = "statut succes";
+    document.getElementById("formulaire").reset();
+  } catch (err) {
+    statut.textContent = "Échec de l'envoi (" + err.message + ") — réessayez.";
+    statut.className = "statut erreur";
+  } finally {
+    bouton.disabled = false;
+  }
+});
+</script>
+
+</body>
+</html>
