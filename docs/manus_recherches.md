@@ -6,12 +6,9 @@
 > site web complet au lieu d'un tableau, gaspillant du temps de fenêtre
 > gratuite.
 >
-> **Statut au 18/08/2026 : les 4 prompts ci-dessous sont traités.**
-> Manus a livré un document unique respectant le format demandé.
-> Résultats intégrés dans `docs/construction_rf.md` (firmware Mesh-Mapper
-> retenu), `docs/materiel.md` (budget ESP32), `docs/donnees.md` (GéoData
-> Togo, catalogue "Aéroports" confirmé), et ce document (ARCEP, ci-dessus).
-> Prochaine file à définir une fois ces intégrations exploitées.
+> **Statut au 18/08/2026 : la file du 18/08 (firmware, fournisseurs,
+> ARCEP, GéoData) est traitée** — voir `docs/journal.md` pour le résumé.
+> Nouvelle file ci-dessous, à lancer maintenant.
 
 ## Règle d'usage
 
@@ -19,7 +16,50 @@ Un prompt à la fois. Vérifier et intégrer le résultat précédent avant
 de lancer le suivant — jamais deux recherches en parallèle sans lien
 entre elles.
 
-## Priorité 1 — Urgent (débloquent une action concrète cette semaine)
+## File active (18/08/2026, 2e vague)
+
+### Priorité 1 — Installation Mesh-Mapper sur Xiao ESP32-S3
+
+```
+Trouve les instructions précises d'installation et de flashage du
+firmware Mesh-Mapper (drone-mesh-mapper, github.com/colonelpanichacks/
+drone-mesh-mapper) spécifiquement sur une carte Seeed XIAO ESP32-S3 :
+outils requis (Arduino IDE, PlatformIO, esptool.py), étapes de
+compilation, câblage éventuel, erreurs fréquentes rapportées dans les
+issues GitHub. Réponds en liste d'étapes markdown uniquement, pas
+d'application, pas de site web.
+```
+
+### Priorité 1 — Accès réel à GéoData Togo
+
+```
+Le téléchargement direct de la fiche "Aéroports - Établissements" sur
+geodata.gouv.tg (UUID 3b659ea8-07cf-47de-b550-553f978a3161) n'a pas
+produit de fichier exploitable. Vérifie si l'endpoint API
+api.geodata.gouv.tg permet un accès direct aux données de cette
+couche, et si l'aéroport de Lomé (code OACI DXXX) y figure. Teste
+aussi le format CSV et GEOJSON séparément. Réponds en tableau markdown
+uniquement.
+```
+
+### Priorité 2 — Portée réelle rapportée (Mesh-Mapper / OpenDroneID)
+
+```
+Cherche des retours d'expérience réels (issues GitHub, forums,
+discussions) sur la portée de détection effective de Mesh-Mapper et de
+l'application OpenDroneID Receiver Android — pas les chiffres annoncés
+par les développeurs, mais des mesures ou témoignages d'utilisateurs
+en conditions réelles. Note les écarts entre portée annoncée et portée
+observée. Réponds en tableau markdown uniquement.
+```
+
+## Archive — file du 18/08/2026 (1ère vague, traitée)
+
+Un prompt à la fois. Vérifier et intégrer le résultat précédent avant
+de lancer le suivant — jamais deux recherches en parallèle sans lien
+entre elles.
+
+### Priorité 1 — Urgent (débloquent une action concrète cette semaine)
 
 ### Firmwares Remote ID pour ESP32
 
@@ -43,7 +83,7 @@ tableau markdown uniquement, même format que la recherche RTL-SDR
 précédente.
 ```
 
-## Priorité 2 — Utile avant le 30 septembre, pas avant le 31 août
+### Priorité 2 — Utile avant le 30 septembre, pas avant le 31 août
 
 ### Catalogue GéoData Togo
 
@@ -63,7 +103,7 @@ l'ARCEP Togo sur l'écoute radio passive du spectre 2,4 GHz par une
 tableau markdown uniquement.
 ```
 
-## Une fois un résultat reçu
+### Une fois un résultat reçu
 
 Coller le résultat dans la conversation Claude avec ce qui doit en
 être fait (vérifier, intégrer dans tel document, ignorer) — jamais
