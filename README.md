@@ -39,7 +39,11 @@
 > [`docs/cas_usage.md`](docs/cas_usage.md) — scénarios concrets.
 >
 > **Un exemple réel, pas hypothétique ?**
-> [`docs/cas_reel_gatwick.md`](docs/cas_reel_gatwick.md).
+> [`docs/cas_reel_gatwick.md`](docs/cas_reel_gatwick.md) et
+> [`docs/cas_reel_or_tambo.md`](docs/cas_reel_or_tambo.md) (cas africain).
+>
+> **Protocole avant un test terrain réel ?**
+> [`docs/protocole_test.md`](docs/protocole_test.md).
 >
 > **Quelles données pour tester VIGIE ?**
 > [`docs/donnees.md`](docs/donnees.md).
