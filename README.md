@@ -27,6 +27,10 @@
 > **Tu veux juste faire quelque chose de concret aujourd'hui, sans
 > bagage technique ?** Va directement sur
 > [`docs/guide_pratique_rf.md`](docs/guide_pratique_rf.md).
+>
+> **Tu rejoins le volet logiciel ?** Commence par
+> [`CONTRIBUTING.md`](CONTRIBUTING.md) — tâches prêtes à prendre,
+> scopées pour éviter tout conflit entre contributeurs.
 
 ## Principe en une phrase
 
