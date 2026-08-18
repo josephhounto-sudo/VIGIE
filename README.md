@@ -40,6 +40,9 @@
 >
 > **Un exemple réel, pas hypothétique ?**
 > [`docs/cas_reel_gatwick.md`](docs/cas_reel_gatwick.md).
+>
+> **Quelles données pour tester VIGIE ?**
+> [`docs/donnees.md`](docs/donnees.md).
 
 ## Principe en une phrase
 
