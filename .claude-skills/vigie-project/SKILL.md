@@ -15,10 +15,22 @@ les corrèle dans le temps/l'espace, et produit une carte de risque —
 architecture dérivée du projet Sentinelle de Joe (même pattern de
 cascade IA résiliente).
 
+**Avant toute chose : lire `docs/journal.md`.** C'est le journal de
+bord — la façon la plus rapide de savoir où en est réellement le
+projet, plus fiable que ce résumé statique qui peut dater. Ce fichier
+SKILL.md décrit le protocole de travail (stable), le journal décrit
+l'état actuel (change à chaque session).
+
 Repo : `github.com/josephhounto-sudo/VIGIE` (public).
-Dossier de référence : `docs/programme_concours.md` (règlement complet
-du concours), `docs/ARCHITECTURE.md` (accessible non-développeurs),
-`docs/construction_rf.md` (décisions matériel RF).
+Documents de référence dans `docs/` : `programme_concours.md` (règlement),
+`ARCHITECTURE.md` (accessible non-développeurs), `guide_pratique_rf.md`
+(comment faire, sans prérequis), `construction_rf.md` (décisions
+matériel RF), `glossaire.md` (tous les termes techniques traduits),
+`cas_usage.md` + `cas_reel_gatwick.md` + `cas_reel_or_tambo.md`
+(scénarios et précédents réels), `protocole_test.md` (avant tout essai
+terrain), `donnees.md` (bases de données évaluées et chargées),
+`manus_recherches.md` (file de prompts Manus planifiés).
+`CONTRIBUTING.md` liste les tâches ouvertes pour contributeurs logiciel.
 
 ## Règle n°1 — ne jamais pousser de décision structurante sans accord explicite
 
@@ -61,7 +73,25 @@ chaque nouveau document :
    Manus rapporte doit être confronté aux décisions déjà prises dans
    le repo, pas simplement résumé.
 
-## Architecture RF retenue (état au 17/08/2026 — vérifier `docs/construction_rf.md` pour l'état à jour)
+## État des 5 blocs (vérifier `docs/journal.md` pour l'état le plus à jour)
+
+Au 18/08/2026, les cinq blocs du schéma ont tous une interface ou du
+code fonctionnel — plus aucun n'est vide : signalement agent
+(`src/interface/signalement.html`), capteur RF (stubs Remote ID +
+générique), classification IA (code réel, attend les clés API),
+corrélation (code réel, testé), carte de risque (squelette testé).
+Ne jamais supposer qu'un bloc est encore un stub sans vérifier le repo
+— l'état change vite.
+
+## Protocole de recherche Manus
+
+Les recherches Manus sont désormais planifiées à l'avance dans
+`docs/manus_recherches.md`, avec des prompts prêts et une contrainte de
+format explicite dans chaque prompt (éviter la dérive de scope déjà
+observée — un site web complet livré à la place d'un tableau markdown).
+Un prompt à la fois, jamais deux recherches en parallèle sans lien.
+
+## Architecture RF retenue
 
 Deux couches, ne jamais les confondre :
 - **Couche 1 — Remote ID (ESP32 ou app Android existante)** : détecte
