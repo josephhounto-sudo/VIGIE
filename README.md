@@ -5,6 +5,9 @@
 > de trois volets. Chaque volet peut avancer sans attendre les autres tant
 > que le contrat de schéma (`schema/`) n'est pas modifié.
 
+> **Tu reviens après une pause ou tu rejoins en cours de route ?**
+> [`docs/journal.md`](docs/journal.md) — 5 minutes pour tout rattraper.
+>
 > **Nouveau dans l'équipe / non-développeur ?** Lis d'abord
 > [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) — aucune compétence
 > technique requise.

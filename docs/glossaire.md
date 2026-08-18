@@ -20,6 +20,38 @@
   où et quand ils se sont produits, pour repérer si plusieurs
   événements séparés forment en fait un même phénomène.
 
+## Autorités et institutions
+
+- **ANAC** : l'Agence Nationale de l'Aviation Civile du Togo, organisatrice
+  du concours et autorité de référence pour tout ce qui touche à la
+  sûreté aérienne.
+- **ARCEP** : l'autorité togolaise qui régule l'usage des fréquences
+  radio — c'est elle qu'il faut consulter avant d'utiliser un capteur RF
+  sur le terrain.
+- **ASAIGE** : l'agence en charge de la sûreté de l'aéroport de Lomé.
+- **ASECNA** : l'organisme régional qui gère le contrôle aérien (la
+  circulation des avions) pour plusieurs pays d'Afrique, dont le Togo.
+
+## Formats de fichiers géographiques
+
+- **GeoPackage (.gpkg)** : un format de fichier qui stocke des cartes et
+  des données géographiques (routes, bâtiments, aéroports) de façon à
+  être facilement réutilisable par un logiciel de cartographie.
+- **Shapefile** : un autre format de données géographiques, plus ancien
+  que le GeoPackage mais toujours très utilisé.
+- **PBF** : un format compact pour stocker de grandes cartes
+  (OpenStreetMap l'utilise) — plus difficile à ouvrir directement,
+  réservé à un traitement automatisé.
+
+## Plateformes de données et de modèles IA
+
+- **Hugging Face** : une plateforme en ligne où des chercheurs publient
+  des modèles d'intelligence artificielle déjà entraînés et des jeux de
+  données, réutilisables gratuitement.
+- **OurAirports** : une base de données ouverte qui recense les
+  aéroports du monde entier avec leurs coordonnées — c'est la source du
+  fichier `data/togo_airports.csv` du repo.
+
 ## Le matériel radio (capteurs)
 
 - **RF (radiofréquence)** : les ondes radio, celles utilisées par le
