@@ -11,8 +11,10 @@ generique), cette couche ne necessite AUCUNE chaine RF additionnelle
 
 Le code ESP32 lui-meme (firmware C/C++) n'est PAS dans ce fichier --
 il s'appuie sur un projet existant a adapter (voir docs/construction_rf.md
-pour les references : opendroneid-core-c, ArduRemoteID cote reception,
-projets derives comme Mesh-Mapper). Ce fichier Python cote serveur
+pour les references : Mesh-Mapper (drone-mesh-mapper) recommande pour
+la reception, compatible Seeed XIAO ESP32-C3/S3 ; ArduRemoteID est un
+EMETTEUR (utile pour un drone de test), pas un recepteur -- ne pas
+confondre. Ce fichier Python cote serveur
 recoit les detections (typiquement via port serie ou MQTT selon le
 firmware choisi) et les met au format du schema commun.
 """

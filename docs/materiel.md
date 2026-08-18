@@ -1,10 +1,29 @@
 # Volet matériel — nomenclature capteur RF
 
-> Mis à jour le 17/08/2026 après recherche croisée (Manus + vérification
-> Claude). Remplace la version précédente — l'ancienne sous-estimait la
-> chaîne technique nécessaire.
+> Mis à jour le 18/08/2026. Section Couche 1 ajoutée (budget ESP32,
+> vérifié par recherche croisée Manus + Claude, 18/08/2026).
 
-## ⚠️ Correction critique par rapport à la première version
+## Couche 1 — Budget ESP32 (priorité)
+
+Firmware recommandé : Mesh-Mapper (voir `docs/construction_rf.md`).
+Carte recommandée : Seeed XIAO ESP32-S3 (WiFi + Bluetooth, couverture
+la plus large).
+
+| Fournisseur | Carte | Prix | Livraison Togo | Délai | Fiabilité |
+|---|---|---|---|---|---|
+| **Seeed Studio** | XIAO ESP32-S3 | 7,49 USD (~6,47 € / 4 243 FCFA) | Non confirmée au panier | Non publié | Meilleur prix, à tester |
+| DigiKey | ESP32-C3-DEVKITM-1-N4X | ~8 USD (~6,91 € / 4 532 FCFA) | Togo sélectionnable au tableau d'expédition | Délai fabricant affiché : **8 semaines** ⚠️ | Fournisseur professionnel, mais délai risqué vu le calendrier |
+| DaakyeTech (Ghana) | ESP-WROOM-32 classique | 122 GHS (~9,58 € / 6 285 FCFA) | Devis FedEx/DHL Ghana→Lomé à demander | Non publié | Piste régionale, carte non validée pour Mesh-Mapper |
+| Ubuy Togo | ESP32-S3 générique PoE/Ethernet | 29 090 FCFA (~44,35 €) hors douane | Vitrine configurée Togo, frais au checkout | Non publié | Meilleure preuve logistique, mais carte non validée, à garder en dépannage seulement |
+| LCSC | Modules ESP32 divers | À vérifier au panier | Togo à confirmer | Non publié | Pour composants futurs, pas premier achat |
+
+**Recommandation** : commander deux cartes Seeed XIAO ESP32-S3
+identiques (une pour le test, une de secours) ; DigiKey en secours
+uniquement si le délai de 8 semaines est acceptable au calendrier.
+Vérifier la livraison réelle au Togo au moment du panier — aucune de
+ces preuves n'est garantie jusqu'à confirmation au paiement.
+
+## Couche 2 — Correction critique (downconverter)
 
 **Un RTL-SDR classique (V3/V4, jusqu'à ~1,766 GHz) ne reçoit PAS
 directement les bandes 2,4 GHz et 5,8 GHz où opèrent les drones.** La
@@ -68,8 +87,16 @@ checkout pour chaque fournisseur.
   à garder en tête si la portée du capteur s'étend.
 
 **Action avant tout test terrain (pas avant le 30 septembre)** :
-solliciter une confirmation écrite de l'ARCEP Togo ou un conseil
-juridique local. Ne pas attendre cette confirmation pour le dépôt du
+solliciter une confirmation écrite de l'ARCEP Togo. Aucun formulaire
+spécifique pour l'écoute passive n'existe — la voie identifiée est une
+lettre libre décrivant précisément l'usage (réception seule, aucune
+émission, aucun décodage de communication privée, bande et durée
+d'écoute, minimisation des données) envoyée à `callcenter@arcep.tg`
+(numéro court **8000**, ou +228 22 23 63 80). Ne pas présumer qu'une
+assignation de fréquence ou une homologation d'équipement (100 000
+FCFA, 22 jours) est nécessaire pour un simple récepteur passif —
+demander explicitement à l'ARCEP de trancher, plutôt que de supposer
+une exemption. Ne pas attendre cette confirmation pour le dépôt du
 31 août — le concept et le prototype logiciel n'en dépendent pas.
 
 ## Limite à assumer explicitement dans le dossier

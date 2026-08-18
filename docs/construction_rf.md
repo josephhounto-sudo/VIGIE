@@ -15,10 +15,15 @@ OpenDroneID. Un microcontrôleur ESP32 reçoit ça nativement, sans aucune
 chaîne RF additionnelle.
 
 - Coût : accessible, carte ESP32 seule, sans chaîne RF additionnelle.
-- Firmware existant et maintenu : ArduPilot/ArduRemoteID (côté
-  transmission, référence de conformité) ; réception via
-  opendroneid-core-c ou des projets dérivés (ex. Mesh-Mapper,
-  esp32-c3-remote-id).
+- Firmware recommandé pour la réception : **Mesh-Mapper**
+  (drone-mesh-mapper), activement maintenu, licence MIT, exporte les
+  détections en CSV/KML/GeoJSON. Supporte explicitement les cartes
+  Seeed XIAO ESP32-C3 (WiFi seul) et XIAO ESP32-S3 (WiFi + Bluetooth —
+  couverture plus large, recommandée). ArduPilot/ArduRemoteID est un
+  **émetteur** (utile pour un drone de test qui diffuse son propre
+  Remote ID), pas un récepteur — ne pas confondre les deux rôles.
+  `esp32-c3-remote-id` écarté : son propre dépôt indique qu'il est
+  cassé et prévu à la suppression.
 - Portées réelles rapportées : 5 à 15 km selon l'environnement.
 - Aucune compétence RF/soudure requise — flashage de firmware existant.
 

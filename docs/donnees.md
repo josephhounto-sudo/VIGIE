@@ -28,6 +28,19 @@
   Hugging Face directement, avant d'envisager le sous-ensemble
   Roboflow.
 
+### GéoData Togo — catalogue confirmé, présence de DXXX non encore vérifiée
+
+Le portail `geodata.gouv.tg` héberge un catalogue confirmé de 177 jeux
+publics, dont une famille "Aéroports" complète (Établissements,
+Bâtiments, Cuves, Énergies, Pistes, Véhicules), source PRISE
+2021/2022, téléchargeable en CSV/XLSX/KML/GEOJSON/SHP. Le
+téléchargement direct de la fiche "Aéroports - Établissements" n'a pas
+encore produit de fichier exploitable lors du test — la présence
+effective de Lomé (DXXX) reste à confirmer en re-testant le
+téléchargement ou en contactant le portail. Accès en principe gratuit
+et sans compte, réutilisation potentiellement soumise à une demande
+(jusqu'à 20 jours ouvrables).
+
 ### OSM Togo (Geofabrik) — bloqué techniquement, pas conceptuellement
 
 Le téléchargement direct n'est pas accessible depuis l'environnement

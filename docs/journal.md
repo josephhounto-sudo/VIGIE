@@ -7,6 +7,29 @@
 
 ---
 
+## 18/08/2026 (suite 2) — Firmware ESP32, fournisseurs, ARCEP, GéoData
+
+**Ce qui a changé :**
+- Firmware récepteur ESP32 tranché : **Mesh-Mapper**, pas ArduRemoteID
+  (qui est un émetteur, pas un récepteur — correction importante).
+  Carte recommandée : Seeed XIAO ESP32-S3.
+- Budget Couche 1 vérifié et documenté (`docs/materiel.md`) — Seeed
+  Studio moins cher, DigiKey a un délai de 8 semaines à surveiller.
+- Coordonnées ARCEP réelles obtenues (email, téléphone, adresse) —
+  plus une hypothèse, une vraie voie de contact.
+- GéoData Togo : catalogue "Aéroports" confirmé existant, présence de
+  Lomé (DXXX) pas encore vérifiée par téléchargement direct.
+
+**Pourquoi :** les 4 recherches Manus planifiées la dernière fois ont
+toutes été traitées en un seul document bien structuré — la file
+`docs/manus_recherches.md` est maintenant à jour.
+
+**À faire ensuite :** rédiger la lettre à l'ARCEP ; commander les
+cartes Seeed XIAO ESP32-S3 (deux, une de secours) une fois le budget
+équipe confirmé.
+
+---
+
 ## 18/08/2026 (suite) — Interface de signalement agent
 
 **Ce qui a changé :** l'interface graphique pour qu'un agent terrain

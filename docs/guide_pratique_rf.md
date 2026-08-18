@@ -58,7 +58,9 @@ fait la même chose que le téléphone, mais en continu, sans mobiliser un
 smartphone.
 
 Ce qu'il faut concrètement :
-1. Acheter une carte ESP32 (n'importe quel modèle de base convient).
+1. Acheter une carte ESP32 — le modèle recommandé est le **"Seeed
+   XIAO ESP32-S3"**, une petite carte peu chère, compatible avec le
+   programme qu'on va installer à l'étape suivante.
 2. La brancher à un ordinateur par câble USB.
 3. Installer un programme déjà écrit par d'autres (pas besoin de
    l'écrire soi-même) — voir `docs/construction_rf.md` pour les liens

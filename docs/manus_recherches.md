@@ -5,6 +5,13 @@
 > uniquement") — leçon tirée d'une recherche précédente qui a produit un
 > site web complet au lieu d'un tableau, gaspillant du temps de fenêtre
 > gratuite.
+>
+> **Statut au 18/08/2026 : les 4 prompts ci-dessous sont traités.**
+> Manus a livré un document unique respectant le format demandé.
+> Résultats intégrés dans `docs/construction_rf.md` (firmware Mesh-Mapper
+> retenu), `docs/materiel.md` (budget ESP32), `docs/donnees.md` (GéoData
+> Togo, catalogue "Aéroports" confirmé), et ce document (ARCEP, ci-dessus).
+> Prochaine file à définir une fois ces intégrations exploitées.
 
 ## Règle d'usage
 
