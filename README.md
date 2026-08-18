@@ -32,6 +32,9 @@
 > [`CONTRIBUTING.md`](CONTRIBUTING.md) — tâches prêtes à prendre,
 > scopées pour éviter tout conflit entre contributeurs.
 
+> **Un mot technique pas clair ?** Tout est traduit dans
+> [`docs/glossaire.md`](docs/glossaire.md).
+
 ## Principe en une phrase
 
 Collecter des signaux hétérogènes (signalement humain, alerte capteur RF),

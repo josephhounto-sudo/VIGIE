@@ -3,6 +3,9 @@
 > Pour toute personne qui rejoint le projet côté logiciel, quel que
 > soit son niveau. Lire dans l'ordre : `docs/ARCHITECTURE.md` d'abord
 > (comprendre le projet), ce document ensuite (comment contribuer).
+> Terme pas clair (branche, Pull Request, framework...) ?
+> [`docs/glossaire.md`](docs/glossaire.md) traduit tout en langage
+> simple.
 
 ## Avant de coder
 

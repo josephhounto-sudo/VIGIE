@@ -5,6 +5,7 @@
 > n'est utilisé sans être expliqué.
 > Pour comprendre POURQUOI ces choix, voir `docs/construction_rf.md`.
 > Ce document-ci répond seulement à COMMENT faire, étape par étape.
+> Mot pas clair ? [`docs/glossaire.md`](glossaire.md) traduit tout.
 
 ## Ce qu'on essaie de faire, en une phrase
 

@@ -2,7 +2,8 @@
 
 > Ce document ne suppose aucune compétence technique. Si tu es dans
 > l'équipe pour l'électronique, le dossier, ou la présentation orale,
-> commence ici — pas par le code.
+> commence ici — pas par le code. Mot pas clair ?
+> [`docs/glossaire.md`](glossaire.md) traduit tout.
 
 ## L'idée en une phrase
 
@@ -48,7 +49,31 @@ d'alertes à un moment donné.
 | Corrélation | Le système compare les événements entre eux dans le temps et l'espace pour repérer des tendances | Volet logiciel |
 | Carte de risque + traçabilité | La sortie finale : une vue d'ensemble pour un responsable, et un historique de chaque décision | Volet logiciel |
 
-## Pourquoi c'est crédible techniquement
+## La stratégie des capteurs — pourquoi deux systèmes d'écoute, pas un seul
+
+Un **capteur**, c'est simplement l'appareil qui "regarde" ou "écoute" le
+monde extérieur pour VIGIE — ici, un appareil qui écoute les ondes
+radio pour repérer un drone. On a délibérément choisi d'en construire
+**deux**, complémentaires, pas un seul plus compliqué :
+
+| | Système 1 — écoute les drones qui s'annoncent | Système 2 — écoute tout signal radio suspect |
+|---|---|---|
+| **Ce qu'il capte** | Les drones qui diffusent volontairement leur position (comme un avion qui annonce "je suis là") | N'importe quel appareil qui émet sur les fréquences utilisées par les drones, qu'il s'annonce ou non |
+| **Coût / difficulté** | Faible — une petite carte électronique suffit, pas de montage compliqué | Plus élevé — nécessite un montage électronique plus avancé |
+| **Ce qu'il rate** | Un drone qui refuse délibérément de s'annoncer | Rien en théorie, mais plus difficile à construire correctement |
+| **Statut du projet** | Priorité — c'est celui qu'on construit et teste en premier | Objectif d'extension, si le temps le permet après le premier |
+
+**Pourquoi les deux, et pas juste le plus simple** : le Système 1 seul
+donnerait un jury l'impression trompeuse que VIGIE détecte "tous les
+drones" — faux, il ne voit que ceux qui coopèrent. Le dire clairement
+plutôt que de le cacher est plus solide face à des experts en sûreté.
+Le Système 2 comble ce trou, même s'il arrive en second.
+
+Détails complets (comment construire chaque système, étape par étape) :
+[`docs/guide_pratique_rf.md`](guide_pratique_rf.md). Justification
+technique complète : [`docs/construction_rf.md`](construction_rf.md).
+
+
 
 L'architecture de classification et de corrélation reprend un système
 déjà en production depuis plusieurs semaines sur un autre projet
