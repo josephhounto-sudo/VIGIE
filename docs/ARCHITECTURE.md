@@ -52,7 +52,9 @@ d'alertes à un moment donné.
 ## Voir le système en action
 
 Cinq scénarios concrets, du cas normal à la fausse alerte écartée :
-[`docs/cas_usage.md`](cas_usage.md).
+[`docs/cas_usage.md`](cas_usage.md). Et un cas réel documenté (Gatwick
+2018) où un système comme VIGIE aurait fait une vraie différence :
+[`docs/cas_reel_gatwick.md`](cas_reel_gatwick.md).
 
 ## La stratégie des capteurs — pourquoi deux systèmes d'écoute, pas un seul
 

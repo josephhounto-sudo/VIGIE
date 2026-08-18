@@ -37,6 +37,9 @@
 >
 > **Envie de voir à quoi ça ressemble en vrai ?**
 > [`docs/cas_usage.md`](docs/cas_usage.md) — scénarios concrets.
+>
+> **Un exemple réel, pas hypothétique ?**
+> [`docs/cas_reel_gatwick.md`](docs/cas_reel_gatwick.md).
 
 ## Principe en une phrase
 
