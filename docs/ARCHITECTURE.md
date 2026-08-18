@@ -49,6 +49,11 @@ d'alertes à un moment donné.
 | Corrélation | Le système compare les événements entre eux dans le temps et l'espace pour repérer des tendances | Volet logiciel |
 | Carte de risque + traçabilité | La sortie finale : une vue d'ensemble pour un responsable, et un historique de chaque décision | Volet logiciel |
 
+## Voir le système en action
+
+Cinq scénarios concrets, du cas normal à la fausse alerte écartée :
+[`docs/cas_usage.md`](cas_usage.md).
+
 ## La stratégie des capteurs — pourquoi deux systèmes d'écoute, pas un seul
 
 Un **capteur**, c'est simplement l'appareil qui "regarde" ou "écoute" le

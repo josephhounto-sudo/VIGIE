@@ -34,6 +34,9 @@
 
 > **Un mot technique pas clair ?** Tout est traduit dans
 > [`docs/glossaire.md`](docs/glossaire.md).
+>
+> **Envie de voir à quoi ça ressemble en vrai ?**
+> [`docs/cas_usage.md`](docs/cas_usage.md) — scénarios concrets.
 
 ## Principe en une phrase
 
