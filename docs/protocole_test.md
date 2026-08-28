@@ -38,6 +38,24 @@ ASAIGE et ARCEP à solliciter selon le contexte précis du test.
    effectivement reçus, défaillances, événements non corrélés, mesures
    correctives envisagées.
 
+## Critères d'arrêt — arrêter le test et documenter l'échec si...
+
+- Le lieu n'est pas autorisé ou hors du cadre coordonné.
+- Le matériel ne correspond pas à la configuration annoncée.
+- La source de données contient des informations personnelles non
+  nécessaires (identifiants, position précise d'un tiers).
+- Le résultat n'est pas reproductible dans les mêmes conditions.
+- Une action d'émission, de brouillage, de prise de contrôle ou de
+  neutralisation est envisagée à quelque titre que ce soit — sortir
+  immédiatement du protocole, ce n'est plus un test VIGIE.
+
+## Rapport minimal attendu après chaque test
+
+Date, version du code/de l'application utilisée, description du
+matériel, données d'entrée, sorties obtenues, erreurs rencontrées,
+résultats négatifs (pas seulement les succès), limites constatées, et
+une décision explicite : poursuivre, corriger, suspendre ou abandonner.
+
 ## Garde-fou permanent
 
 Le test est **hors opérations aéronautiques réelles**, sur un drone

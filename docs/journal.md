@@ -7,6 +7,36 @@
 
 ---
 
+## 19/08/2026 — Équipe confirmée, statut de preuve, sécurité RLS
+
+**La plus grosse nouvelle depuis le début du projet :** l'équipe est
+**confirmée à 4 membres officiels** (Joe + 2 étudiants IAI Togo + 1
+étudiant IPNET) — le risque n°1 suivi depuis le premier jour est levé.
+CV et lettre de présentation en cours de rédaction par Joe avec Manus,
+réunion prévue le 20/08.
+
+**Ce qui a changé côté technique :**
+- Nouveau champ `statut_preuve` dans le schéma commun
+  (`mesure`/`rapporte`/`simule`/`externe`/`non_disponible`) — distingue
+  enfin une donnée réellement mesurée d'une donnée de test, séparément
+  du jugement IA (`nature`) et de l'état de traitement (`statut`).
+- Alerte de sécurité ajoutée en tête de `schema/migration.sql` : les
+  permissions actuelles sont pour le développement, pas pour la
+  production — à corriger avant toute vraie connexion Supabase.
+- Critères d'arrêt et rapport minimal ajoutés à `docs/protocole_test.md`.
+- Nouveau `docs/ethique.md` — version courte et accessible des règles
+  déjà présentes dans la déclaration formelle du dossier.
+- GéoData Togo : confirmé que c'est une restriction d'accès, pas un
+  bug — OurAirports reste la source de référence pour DXXX.
+
+**Ce qui a été analysé mais volontairement pas intégré :** un lot de
+11 documents Manus proposait de fragmenter la documentation en autant
+de nouveaux fichiers. Décision : garder la structure actuelle
+(`journal.md` existe justement pour éviter cette dispersion), n'en
+retenir que le contenu à valeur réelle listé ci-dessus.
+
+---
+
 ## 18/08/2026 (suite 2) — Firmware ESP32, fournisseurs, ARCEP, GéoData
 
 **Ce qui a changé :**

@@ -54,6 +54,9 @@
 > **Prochaines recherches Manus à lancer ?**
 > [`docs/manus_recherches.md`](docs/manus_recherches.md) — prompts prêts,
 > priorisés.
+>
+> **Ce qu'il ne faut jamais faire ?**
+> [`docs/ethique.md`](docs/ethique.md) — rappel court, pour tous.
 
 ## Principe en une phrase
 

@@ -33,13 +33,15 @@
 Le portail `geodata.gouv.tg` héberge un catalogue confirmé de 177 jeux
 publics, dont une famille "Aéroports" complète (Établissements,
 Bâtiments, Cuves, Énergies, Pistes, Véhicules), source PRISE
-2021/2022, téléchargeable en CSV/XLSX/KML/GEOJSON/SHP. Le
-téléchargement direct de la fiche "Aéroports - Établissements" n'a pas
-encore produit de fichier exploitable lors du test — la présence
-effective de Lomé (DXXX) reste à confirmer en re-testant le
-téléchargement ou en contactant le portail. Accès en principe gratuit
-et sans compte, réutilisation potentiellement soumise à une demande
-(jusqu'à 20 jours ouvrables).
+2021/2022, téléchargeable en CSV/XLSX/KML/GEOJSON/SHP. **Précision du
+19/08/2026** : l'aperçu GeoJSON public de la couche "Aéroports -
+Établissements" a été consulté, mais les endpoints d'export contrôlés
+renvoient une restriction d'accès — ce n'est pas un échec technique
+ambigu, c'est une limitation d'accès confirmée. La couche mentionne
+l'aéroport Gnassingbé Eyadéma, mais le code DXXX n'y est pas confirmé
+dans l'état actuel. **OurAirports reste la source contrôlée pour DXXX
+dans le MVP** — pas de dépendance à GéoData Togo tant que l'accès n'est
+pas débloqué.
 
 ### OSM Togo (Geofabrik) — bloqué techniquement, pas conceptuellement
 

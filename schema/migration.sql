@@ -2,6 +2,16 @@
 -- VIGIE — SCHEMA COMMUN (contrat entre sources et moteur)
 -- Style Supabase, meme conventions que SENTINELLE_COMPLET.md.
 -- Idempotent : peut etre relance sans risque.
+--
+-- ⚠️ ATTENTION SECURITE (ajoute le 19/08/2026, a traiter avant toute
+-- connexion Supabase reelle, pas avant) : les policies ci-dessous
+-- donnent un acces complet ("using (true) with check (true)") au role
+-- anon -- correct pour un prototype de developpement isole, mais PAS
+-- pour une instance connectee a de vraies donnees. Avant production :
+-- corriger les droits anon, ajouter une authentification, separer
+-- lecture/ecriture, limiter les champs exposes, journaliser les
+-- modifications. Aucune cle API ne doit jamais etre placee dans
+-- l'HTML/JS cote client ni committee dans le depot.
 -- ============================================================
 
 -- ─── 1. EVENEMENTS (table unique, toute source y ecrit) ──────
@@ -24,9 +34,25 @@ create table if not exists public.evenements (
   criticite integer,                 -- 0-100, meme logique de garde-fou que Sentinelle
   justification text,
 
-  statut text default 'nouveau',     -- 'nouveau' | 'confirme' | 'rejete' | 'traite'
-  date_peremption timestamp
+  statut text default 'nouveau',     -- 'nouveau' | 'a_verifier' | 'confirme' | 'rejete' | 'clos'
+  date_peremption timestamp,
+
+  -- Ajoute le 19/08/2026 : distingue la PROVENANCE de la preuve, separement
+  -- de `nature` (le jugement IA) et de `statut` (l'etat du traitement).
+  -- Empeche qu'une donnee de test (simule/externe) soit un jour confondue
+  -- avec une vraie observation togolaise (mesure).
+  statut_preuve text default 'non_disponible'  -- 'mesure' | 'rapporte' | 'simule' | 'externe' | 'non_disponible'
 );
+
+comment on column public.evenements.statut_preuve is
+  'Provenance de la preuve : mesure (obtenue par l''equipe, protocole consigne), '
+  'rapporte (source externe publiee, non reproduite), simule (donnee de test), '
+  'externe (autre contexte, ex. FAA/RFUAV, jamais un signalement togolais), '
+  'non_disponible (non obtenu/verifie). Ne jamais laisser vide silencieusement.';
+
+-- Si la table existait deja avant le 19/08/2026 (ancien schema sans ce
+-- champ), cette ligne l'ajoute sans rien casser :
+alter table public.evenements add column if not exists statut_preuve text default 'non_disponible';
 
 alter table public.evenements enable row level security;
 grant all on public.evenements to anon;
