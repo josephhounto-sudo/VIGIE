@@ -30,16 +30,18 @@ issues GitHub. Réponds en liste d'étapes markdown uniquement, pas
 d'application, pas de site web.
 ```
 
-### Priorité 1 — Accès réel à GéoData Togo
+### Priorité 1 — Accès réel à GéoData Togo (prompt révisé le 19/08)
 
 ```
-Le téléchargement direct de la fiche "Aéroports - Établissements" sur
-geodata.gouv.tg (UUID 3b659ea8-07cf-47de-b550-553f978a3161) n'a pas
-produit de fichier exploitable. Vérifie si l'endpoint API
-api.geodata.gouv.tg permet un accès direct aux données de cette
-couche, et si l'aéroport de Lomé (code OACI DXXX) y figure. Teste
-aussi le format CSV et GEOJSON séparément. Réponds en tableau markdown
-uniquement.
+Le site geodata.gouv.tg est une application JavaScript pure (confirmé
+par test direct) — un simple fetch ne peut pas afficher son contenu.
+Ouvre le site dans un vrai navigateur, va sur la couche "Aéroports -
+Établissements", et inspecte les requêtes réseau déclenchées au
+chargement des données (onglet réseau/network de l'inspecteur) pour
+identifier l'endpoint API réel utilisé en coulisses. Teste cet
+endpoint directement et vérifie si l'aéroport de Lomé (DXXX) y figure.
+Réponds en tableau markdown uniquement, avec l'URL exacte de
+l'endpoint trouvé.
 ```
 
 ### Priorité 2 — Portée réelle rapportée (Mesh-Mapper / OpenDroneID)
