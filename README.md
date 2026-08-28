@@ -57,6 +57,12 @@
 >
 > **Ce qu'il ne faut jamais faire ?**
 > [`docs/ethique.md`](docs/ethique.md) — rappel court, pour tous.
+>
+> **Les règles exactes pour remplir un événement ?**
+> [`docs/contrat_evenement.md`](docs/contrat_evenement.md).
+>
+> **Où en est chaque brique techniquement, vraiment ?**
+> [`docs/feuille_route.md`](docs/feuille_route.md) — niveaux L0 à L5.
 
 ## Principe en une phrase
 

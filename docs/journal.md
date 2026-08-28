@@ -31,16 +31,25 @@ réunion prévue le 20/08.
 
 **Ce qui a été analysé mais volontairement pas intégré :** un lot de
 11 documents Manus proposait de fragmenter la documentation en autant
-de nouveaux fichiers. Décision : garder la structure actuelle
-(`journal.md` existe justement pour éviter cette dispersion), n'en
-retenir que le contenu à valeur réelle listé ci-dessus.
+de nouveaux fichiers. Sur relecture plus attentive (après retour
+justifié de Joe sur un premier tri trop rapide), trois fichiers
+avaient une vraie valeur non redondante et ont été intégrés :
+`docs/contrat_evenement.md` (règles humaines du schéma), 
+`docs/feuille_route.md` (échelle de maturité L0-L5 avec critères de
+réussite), et l'extension des critères d'arrêt dans
+`docs/protocole_test.md`. Les autres fichiers du lot (Idée générale,
+Données VIGIE, Référentiels géographiques) étaient des reformulations
+proches de nos propres documents existants — pas intégrés tels quels.
+
+**Correction du jour :** l'affirmation "GéoData Togo bloqué" venait
+d'un document Manus non vérifié indépendamment — corrigée dans
+`docs/donnees.md` pour distinguer ce qui est réellement vérifié (site
+en JavaScript pur, illisible par un outil automatisé) de ce qui reste
+une affirmation non confirmée (restriction d'accès délibérée).
 
 ---
 
 ## 18/08/2026 (suite 2) — Firmware ESP32, fournisseurs, ARCEP, GéoData
-
-**Ce qui a changé :**
-- Firmware récepteur ESP32 tranché : **Mesh-Mapper**, pas ArduRemoteID
   (qui est un émetteur, pas un récepteur — correction importante).
   Carte recommandée : Seeed XIAO ESP32-S3.
 - Budget Couche 1 vérifié et documenté (`docs/materiel.md`) — Seeed

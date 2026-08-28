@@ -33,15 +33,25 @@
 Le portail `geodata.gouv.tg` héberge un catalogue confirmé de 177 jeux
 publics, dont une famille "Aéroports" complète (Établissements,
 Bâtiments, Cuves, Énergies, Pistes, Véhicules), source PRISE
-2021/2022, téléchargeable en CSV/XLSX/KML/GEOJSON/SHP. **Précision du
-19/08/2026** : l'aperçu GeoJSON public de la couche "Aéroports -
-Établissements" a été consulté, mais les endpoints d'export contrôlés
-renvoient une restriction d'accès — ce n'est pas un échec technique
-ambigu, c'est une limitation d'accès confirmée. La couche mentionne
-l'aéroport Gnassingbé Eyadéma, mais le code DXXX n'y est pas confirmé
-dans l'état actuel. **OurAirports reste la source contrôlée pour DXXX
-dans le MVP** — pas de dépendance à GéoData Togo tant que l'accès n'est
-pas débloqué.
+2021/2022, téléchargeable en CSV/XLSX/KML/GEOJSON/SHP.
+
+**Ce qui est vérifié directement (Claude, 19/08/2026)** : le site est
+une application JavaScript pure — un outil de récupération automatisé
+(le mien, ou le crawler de Manus) ne peut pas afficher son contenu
+sans exécuter ce JavaScript. C'est confirmé par un test direct.
+
+**Ce qui N'EST PAS vérifié** : l'affirmation selon laquelle "les
+endpoints d'export contrôlés renvoient une restriction d'accès"
+vient d'un document de recherche Manus, non recoupée indépendamment.
+Aucune source ne confirme un blocage délibéré — l'explication la plus
+probable reste la limite technique ci-dessus (JavaScript non exécuté),
+pas nécessairement un refus d'accès. Ne pas présenter cette nuance
+comme tranchée avant vérification manuelle (ouvrir le site dans un
+vrai navigateur) ou contact direct avec le portail.
+
+**OurAirports reste la source contrôlée pour DXXX dans le MVP**,
+indépendamment de l'issue de cette vérification — pas de dépendance
+bloquante ici.
 
 ### OSM Togo (Geofabrik) — bloqué techniquement, pas conceptuellement
 
