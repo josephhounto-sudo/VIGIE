@@ -152,6 +152,24 @@
   .ch-ar{display:flex;align-items:center;color:var(--line);font-size:22px}
   @media(max-width:640px){.ch-ar{display:none}}
 
+
+  /* --- Dimensions corrélables --- */
+  .dims{margin-top:18px}
+  .dim{display:flex;gap:16px;align-items:flex-start;padding:16px 18px;
+    border:1px solid var(--line);border-radius:10px;margin-bottom:9px;background:var(--card)}
+  .dim.hi{background:#fdf7f0;border-color:#f3d9bd}
+  .dnum{flex:0 0 30px;height:30px;border-radius:7px;background:var(--navy);color:#fff;
+    display:flex;align-items:center;justify-content:center;font-weight:700;font-size:15px;
+    font-family:"Fraunces",Georgia,serif}
+  .dim.hi .dnum{background:var(--amber)}
+  .dim > div{flex:1}
+  .dim strong{display:block;font-size:16px;margin-bottom:3px}
+  .dim p{font-size:14px;color:var(--soft);line-height:1.55;margin:0}
+  .dtag{flex:0 0 auto;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;
+    color:#9aa3ad;font-weight:700;padding-top:6px;white-space:nowrap}
+  .dtag.on{color:var(--amber)}
+  @media(max-width:620px){.dim{flex-wrap:wrap}.dtag{width:100%;padding-top:2px}}
+
   /* --- Incidents --- */
   .inc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:18px;margin-top:32px}
   .inc{background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.12);
@@ -180,6 +198,7 @@
       <a href="#incidents">Pourquoi</a>
       <a href="#demo">Démonstration</a>
       <a href="#preuve">Preuve</a>
+      <a href="#traces">Ce qu'on trace</a>
       <a href="#difference">Différence</a>
       <a href="#questions">Questions</a>
     </div>
@@ -325,6 +344,38 @@
       <div class="card t-teal"><span class="num">03 — VOIR</span><h3>Signature radio</h3><p>Repère l'émission d'un appareil même quand aucune identité n'est déclarée. C'est la couche qui répond au drone qui cherche à passer inaperçu.</p></div>
       <div class="card t-violet"><span class="num">04 — RECOUPER</span><h3>Corrélation</h3><p>Rapproche les signaux par lieu, heure et récurrence. Un motif invisible signal par signal devient lisible.</p></div>
     </div>
+  </div>
+</section>
+
+<!-- ============ CE QUE NOUS TRAÇONS ============ -->
+<section id="traces">
+  <div class="wrap reveal">
+    <div class="eyebrow">Le cœur technique</div>
+    <h2>Un détecteur voit un instant. <em>Une trace raconte une habitude.</em></h2>
+    <p class="sublede">Chaque source produit des champs précis. Ce sont eux, et non l'événement brut, qui rendent la corrélation possible.</p>
+
+    <table>
+      <tr><th style="width:20%">Source</th><th>Ce qu'elle produit réellement</th><th style="width:18%">Cadence</th></tr>
+      <tr><td>Remote ID</td><td>Numéro de série de l'appareil, latitude, longitude, altitude, hauteur sol, vitesse, cap, statut au sol ou en vol, horodatage — et <strong>la position du télépilote</strong>.</td><td>Position au moins <strong>1×/seconde</strong></td></tr>
+      <tr><td>Signature radio</td><td>Fréquence, largeur de bande, puissance reçue, durée d'émission, heure. Aucune identité, aucune position précise.</td><td>Continu</td></tr>
+      <tr><td>Signalement agent</td><td>Heure, zone, description, identifiant de l'agent, niveau de confiance déclaré.</td><td>À l'événement</td></tr>
+    </table>
+
+    <h3 style="margin-top:34px;font-size:20px">Six dimensions corrélables — dont trois qu'aucun détecteur ne voit seul</h3>
+    <div class="dims">
+      <div class="dim"><span class="dnum">1</span><div><strong>Le temps</strong><p>Commun aux trois sources. La base de tout rapprochement.</p></div><span class="dtag">Détecteur</span></div>
+      <div class="dim"><span class="dnum">2</span><div><strong>Le lieu, à précisions différentes</strong><p>Un point GPS, une proximité radio, une zone décrite. Rapprocher ces trois échelles est le travail du moteur.</p></div><span class="dtag">Détecteur</span></div>
+      <div class="dim hi"><span class="dnum">3</span><div><strong>L'identifiant persistant</strong><p>Le numéro de série révèle que <em>le même appareil</em> est revenu. Trois passages en une semaine ne sont plus un incident : c'est un motif.</p></div><span class="dtag on">Corrélation</span></div>
+      <div class="dim hi"><span class="dnum">4</span><div><strong>La position du télépilote</strong><p>Le drone diffuse où se trouve son pilote. Si le même point de décollage ressort sur plusieurs vols, on n'observe plus un appareil : on identifie un lieu récurrent.</p></div><span class="dtag on">Corrélation</span></div>
+      <div class="dim"><span class="dnum">5</span><div><strong>Le cap et la trajectoire</strong><p>Croisés avec les axes de piste, ils distinguent un survol de passage d'une approche répétée.</p></div><span class="dtag">Détecteur</span></div>
+      <div class="dim hi"><span class="dnum">6</span><div><strong>L'écart entre les couches</strong><p>La radio signale une émission, le Remote ID ne renvoie rien : appareil non coopératif, ou identité falsifiée. <strong>La contradiction entre deux sources est le signal de plus forte valeur</strong> — et elle n'existe qu'en corrélant.</p></div><span class="dtag on">Corrélation</span></div>
+    </div>
+
+    <div class="warn" style="margin-top:26px">
+      <strong>C'est ici que se situe l'apport de VIGIE.</strong> Les dimensions 3, 4 et 6 sont invisibles à un détecteur, quel qu'en soit le prix : elles n'apparaissent qu'en croisant des traces dans la durée. Un système mieux équipé détectera mieux ; il ne dira pas pour autant que c'est le même appareil, parti du même endroit, pour la troisième fois.
+    </div>
+
+    <p style="font-size:13.5px;color:var(--soft);margin-top:16px">La même mécanique vaut hors du domaine drone : un signalement d'agent porte lui aussi un horodatage, une zone et une source dont la fiabilité se mesure dans la durée. Le moteur ne sait pas s'il traite une intrusion aérienne ou un accès irrégulier — il traite des traces.</p>
   </div>
 </section>
 
