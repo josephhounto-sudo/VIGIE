@@ -13,16 +13,32 @@ Page unique, autonome, déployée sur Cloudflare Pages.
 
 Une fois configuré, **chaque push sur `main` redéploie le site automatiquement.**
 
-1. Sur `dash.cloudflare.com` → **Workers & Pages** → **Create** → onglet **Pages** → **Connect to Git**.
-2. Autoriser Cloudflare à accéder au compte GitHub, puis choisir le dépôt `VIGIE`.
-3. Configuration du build :
+> ⚠️ Cloudflare a fusionné les interfaces Workers et Pages sous un
+> même menu "Workers & Pages". Bien choisir l'onglet **Pages** à
+> l'étape 2 ci-dessous — le flux "Workers" produit une URL en
+> `.workers.dev` sans le même redéploiement automatique par push que
+> "Pages" (URL en `.pages.dev`).
+
+1. Sur `dash.cloudflare.com` → **Workers & Pages** → **Create** (ou
+   **Create application**).
+2. Choisir l'onglet **Pages** (pas Workers) → **Connect to Git**.
+3. Autoriser l'accès à GitHub si demandé, choisir le dépôt **VIGIE**,
+   cliquer **Begin setup**.
+4. Configuration du build :
    - **Framework preset** : `None`
    - **Build command** : laisser vide
    - **Build output directory** : `site`
-4. **Save and Deploy**. Le site est publié sous `vigie-xxx.pages.dev` en une minute environ.
-5. Optionnel : dans **Custom domains**, brancher un nom de domaine propre.
+5. **Save and Deploy**. Le site est publié sous `vigie-xxx.pages.dev`
+   en une minute environ.
+6. Vérifier que la section "Ce que nous traçons" (les 6 dimensions)
+   apparaît bien sur le site déployé — c'est la partie la plus
+   récente ; si elle manque, le déploiement n'a pas pris le dernier
+   commit.
+7. Optionnel : dans **Custom domains**, brancher un nom de domaine
+   propre.
 
-Aucune étape de compilation n'est nécessaire — le HTML est servi tel quel.
+Aucune étape de compilation n'est nécessaire — le HTML est servi tel
+quel.
 
 ## Modifier le site
 
