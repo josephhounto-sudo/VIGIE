@@ -7,6 +7,38 @@
 
 ---
 
+## 30/08/2026 — Dossier officiel poussé sur le repo, README réorganisé
+
+**Ce qui a changé :**
+- Les 3 documents officiels (note conceptuelle, déclaration d'éthique,
+  fiche de risques) sont maintenant **dans le repo**, pas seulement en
+  téléchargement de chat — dossier [`dossier/`](../dossier/README.md),
+  avec un statut clair des 8 pièces exigées par le règlement.
+- Déclaration d'éthique et fiche de risques **redesignées** avec le
+  logo VIGIE et la palette du site (accents ambre, niveaux de risque
+  colorés plutôt qu'en texte brut).
+- Un risque non pertinent retiré de la fiche (désistement d'un membre
+  — l'équipe est à 4, marge d'un membre au-dessus du minimum
+  réglementaire de 3 ; le signaler n'apportait rien).
+- **README principal réorganisé** : l'ancienne liste plate de 16 liens
+  devient des sections groupées (Pour commencer, Dossier officiel,
+  Comprendre le projet, Volet matériel, Volet logiciel, Recherche) —
+  navigation en tableaux, plus facile à parcourir pour un nouveau
+  membre.
+- Lien du site déployé ajouté dans la note conceptuelle :
+  vigie.josephhounto.workers.dev
+
+**Pourquoi :** les documents officiels vivaient uniquement dans les
+téléchargements de chat — aucun membre de l'équipe ne pouvait y
+accéder sans redemander. Le README, en s'enrichissant session après
+session, était devenu une liste illisible.
+
+**À faire ensuite :** lettre de présentation d'équipe, CV, confirmation
+d'un encadrant — toujours les trois seules pièces manquantes du
+dossier.
+
+---
+
 ## 19/08/2026 — Équipe confirmée, statut de preuve, sécurité RLS
 
 **La plus grosse nouvelle depuis le début du projet :** l'équipe est
