@@ -9,33 +9,35 @@ Page unique, autonome, déployée sur Cloudflare Pages.
 | `index.html` | La page complète — images et styles intégrés, aucune dépendance externe sauf les polices Google |
 | `fiche_vigie.pdf` | La fiche de candidature, accessible en téléchargement direct depuis le site |
 
-## Déploiement Cloudflare Pages (connecté à ce dépôt)
+## Déploiement Cloudflare (connecté à ce dépôt)
 
-Une fois configuré, **chaque push sur `main` redéploie le site automatiquement.**
+Une fois configuré via Git, **chaque push sur `main` redéploie le site automatiquement.**
 
-> ⚠️ Cloudflare a fusionné les interfaces Workers et Pages sous un
-> même menu "Workers & Pages". Bien choisir l'onglet **Pages** à
-> l'étape 2 ci-dessous — le flux "Workers" produit une URL en
-> `.workers.dev` sans le même redéploiement automatique par push que
-> "Pages" (URL en `.pages.dev`).
+> ⚠️ Cloudflare a retiré l'option de création "Pages" du bouton
+> "Create application" — tout passe désormais par "Workers", qui
+> supporte aussi la connexion Git et le redéploiement automatique. Le
+> point qui compte n'est donc plus "Workers vs Pages", mais de bien
+> choisir **"Import a repository"** à l'étape 2 (pas un template, pas
+> "Hello World") — c'est cette option précise qui active le
+> redéploiement automatique par push.
 
-1. Sur `dash.cloudflare.com` → **Workers & Pages** → **Create** (ou
-   **Create application**).
-2. Choisir l'onglet **Pages** (pas Workers) → **Connect to Git**.
-3. Autoriser l'accès à GitHub si demandé, choisir le dépôt **VIGIE**,
-   cliquer **Begin setup**.
-4. Configuration du build :
+1. Sur `dash.cloudflare.com` → **Workers & Pages** → **Create application**.
+2. Repérer l'option **"Import a repository"** et cliquer sur son
+   bouton **"Get started"**.
+3. Choisir GitHub, autoriser l'accès si demandé, sélectionner le dépôt
+   **VIGIE**.
+4. Configuration du projet :
    - **Framework preset** : `None`
    - **Build command** : laisser vide
-   - **Build output directory** : `site`
-5. **Save and Deploy**. Le site est publié sous `vigie-xxx.pages.dev`
-   en une minute environ.
+   - **Build output directory / Path** : `site`
+5. **Save and Deploy**. L'URL générée est en `.workers.dev` — c'est
+   normal, ce n'est plus le signe d'un problème.
 6. Vérifier que la section "Ce que nous traçons" (les 6 dimensions)
    apparaît bien sur le site déployé — c'est la partie la plus
    récente ; si elle manque, le déploiement n'a pas pris le dernier
    commit.
-7. Optionnel : dans **Custom domains**, brancher un nom de domaine
-   propre.
+7. L'auto-déploiement se vérifie ensuite dans **Settings > Builds** du
+   Worker sur le dashboard.
 
 Aucune étape de compilation n'est nécessaire — le HTML est servi tel
 quel.
