@@ -20,6 +20,12 @@ Une fois configuré via Git, **chaque push sur `main` redéploie le site automat
 > choisir **"Import a repository"** à l'étape 2 (pas un template, pas
 > "Hello World") — c'est cette option précise qui active le
 > redéploiement automatique par push.
+>
+> Contrairement à l'ancien Pages, un Worker a besoin d'un petit
+> fichier de configuration pour savoir quoi déployer : c'est
+> [`wrangler.jsonc`](../wrangler.jsonc), déjà présent à la racine du
+> dépôt. Il pointe vers `./site` comme dossier de fichiers statiques —
+> rien à modifier, il est prêt.
 
 1. Sur `dash.cloudflare.com` → **Workers & Pages** → **Create application**.
 2. Repérer l'option **"Import a repository"** et cliquer sur son
@@ -27,9 +33,12 @@ Une fois configuré via Git, **chaque push sur `main` redéploie le site automat
 3. Choisir GitHub, autoriser l'accès si demandé, sélectionner le dépôt
    **VIGIE**.
 4. Configuration du projet :
-   - **Framework preset** : `None`
-   - **Build command** : laisser vide
-   - **Build output directory / Path** : `site`
+   - **Build command** : laisser vide (aucune compilation nécessaire)
+   - **Deploy command** : laisser la valeur par défaut,
+     `npx wrangler deploy` — c'est elle qui lit `wrangler.jsonc` et
+     déploie le contenu de `site/`
+   - **Root directory** : laisser à la racine du dépôt (ne pas mettre
+     `site` ici — c'est `wrangler.jsonc` qui s'en charge)
 5. **Save and Deploy**. L'URL générée est en `.workers.dev` — c'est
    normal, ce n'est plus le signe d'un problème.
 6. Vérifier que la section "Ce que nous traçons" (les 6 dimensions)
