@@ -44,7 +44,12 @@
   .navlinks{display:flex;gap:22px;font-size:14px;flex-wrap:wrap}
   .navlinks a{color:var(--soft);text-decoration:none;transition:color .2s}
   .navlinks a:hover{color:var(--amber)}
-  @media(max-width:760px){.navlinks{display:none}}
+  @media(max-width:760px){
+    .navin{align-items:flex-start;flex-direction:column}
+    .navlinks{display:flex;width:100%;overflow-x:auto;flex-wrap:nowrap;gap:18px;padding-bottom:4px}
+    .navlinks a{white-space:nowrap}
+  }
+  a:focus-visible,button:focus-visible{outline:3px solid var(--amber);outline-offset:3px}
 
   /* --- Hero --- */
   .hero{padding:70px 0 60px;border-bottom:1px solid var(--line)}
@@ -197,7 +202,7 @@
     <div class="navlinks">
       <a href="#incidents">Pourquoi</a>
       <a href="#demo">Démonstration</a>
-      <a href="#preuve">Preuve</a>
+      <a href="#preuve">État vérifiable</a>
       <a href="#traces">Ce qu'on trace</a>
       <a href="#difference">Différence</a>
       <a href="#questions">Questions</a>
@@ -210,16 +215,16 @@
   <div class="wrap">
     <div class="eyebrow">CNISAI / AVSEC 2026 · Innovation libre · Lomé / DXXX</div>
     <h1>Voir vite. Recouper. <em>Puis décider.</em></h1>
-    <p class="lede">VIGIE détecte les signaux d'un drone dans l'espace aéroportuaire, les recoupe avec les signalements du terrain, et met un dossier complet entre les mains d'un responsable — en minutes, pas en jours.</p>
+    <p class="lede">VIGIE relie deux volets : une réception passive de signaux drones à valider sur le terrain, et un logiciel qui recoupe les événements pour présenter un dossier clair à un responsable humain.</p>
     <div class="chain">
       <div class="ch"><span class="ch-n">01</span><strong>Voir</strong><small>Remote ID, radio, signalement agent</small></div>
       <div class="ch-ar">→</div>
-      <div class="ch"><span class="ch-n">02</span><strong>Recouper</strong><small>Lieu, heure, récurrence</small></div>
+      <div class="ch"><span class="ch-n">02</span><strong>Recouper</strong><small>Lieu, heure, sources distinctes</small></div>
       <div class="ch-ar">→</div>
       <div class="ch"><span class="ch-n">03</span><strong>Décider</strong><small>Un humain tranche, la trace reste</small></div>
     </div>
     <p style="font-size:14.5px;color:var(--soft);margin:20px 0 24px;max-width:620px">
-      <strong style="color:var(--ink)">VIGIE n'arrête pas un drone</strong> — aucun système civil légal ne le fait. Il réduit le délai entre le premier signal et une décision informée. À Gatwick, ce délai a été de trente heures.
+      <strong style="color:var(--ink)">VIGIE ne neutralise aucun drone.</strong> Toute intervention relève exclusivement des autorités compétentes. Son objectif est de réduire le délai de recoupement ; ce gain reste à mesurer lors d'un pilote.
     </p>
     <a href="#demo" class="btn">Voir la démonstration</a>
     <a href="#questions" class="btn ghost">Les 9 questions</a>
@@ -232,7 +237,7 @@
   <div class="wrap reveal">
     <div class="eyebrow" style="color:var(--amber)">Pourquoi ce projet existe</div>
     <h2 style="color:#fff">Quand un signal mal traité <em>ferme un aéroport.</em></h2>
-    <p class="sublede" style="color:#a8b3c4;max-width:700px">Ces événements sont réels et documentés. Aucun n'est togolais — et c'est précisément le problème : il n'existe aucun historique public d'incidents drones en Afrique de l'Ouest, parce que personne ne les enregistre de façon structurée.</p>
+    <p class="sublede" style="color:#a8b3c4;max-width:700px">Ces événements sont réels et documentés. Aucun n'est togolais. À ce stade, nous n'avons pas identifié de base publique structurée et directement exploitable couvrant ces incidents en Afrique de l'Ouest.</p>
 
     <div class="inc-grid">
       <article class="inc">
@@ -277,15 +282,15 @@
 <section>
   <div class="wrap reveal">
     <div class="eyebrow">Ce qui existe déjà, vérifiable</div>
-    <h2>Le prototype n'est pas une intention. <em>Il tourne.</em></h2>
+    <h2>Une base vérifiable, <em>sans confondre démonstration et terrain.</em></h2>
     <div class="stats">
-      <div class="stat"><div class="n" data-to="5">0</div><div class="l">blocs sur 5 implémentés</div></div>
-      <div class="stat"><div class="n" data-to="839">0</div><div class="l">lignes de code écrites et exécutées</div></div>
-      <div class="stat"><div class="n" data-to="600">0</div><div class="l">signalements réels (FAA) ingérés</div></div>
+      <div class="stat"><div class="n" data-to="2">0</div><div class="l">volets clairement séparés</div></div>
+      <div class="stat"><div class="n" data-to="3">0</div><div class="l">briques logicielles couvertes par des tests</div></div>
+      <div class="stat"><div class="n" data-to="2">0</div><div class="l">scénarios interactifs, positif et négatif</div></div>
       <div class="stat"><div class="n" data-to="7">0</div><div class="l">aéroports du Togo référencés</div></div>
-      <div class="stat"><div class="n" data-to="17">0</div><div class="l">documents publiés</div></div>
+      <div class="stat"><div class="n" data-to="0">0</div><div class="l">décision autonome</div></div>
     </div>
-    <p class="stats-note">Aucun de ces chiffres n'est une performance de détection. Ce sont des indicateurs d'exécution : la chaîne logicielle existe et fonctionne sur des données réelles. Elle n'a pas encore détecté de drone à Lomé, et la fiche ne le prétend nulle part.</p>
+    <p class="stats-note">La corrélation, l'ingestion et le repli de classification sont testés localement. La réception Remote ID réelle, le pipeline intégré et le gain opérationnel restent à prouver.</p>
   </div>
 </section>
 
@@ -301,9 +306,9 @@
 
     <div class="demo">
       <div class="demohead">
-        <div class="tabs">
-          <button class="tab on" data-sc="a">Scénario A — Relation proposée</button>
-          <button class="tab" data-sc="b">Scénario B — Relation rejetée</button>
+        <div class="tabs" aria-label="Scénarios de démonstration">
+          <button class="tab on" data-sc="a" aria-pressed="true">Scénario A — Relation proposée</button>
+          <button class="tab" data-sc="b" aria-pressed="false">Scénario B — Relation rejetée</button>
         </div>
         <button class="btn" id="play" style="padding:9px 18px;font-size:13.5px">Dérouler le dossier</button>
       </div>
@@ -318,11 +323,11 @@
         <strong style="font-size:14.5px">Décision humaine requise</strong>
         <p style="font-size:14px;color:var(--soft);margin-top:5px" id="vAsk">Une personne habilitée doit confirmer, corriger ou rejeter la relation.</p>
         <div class="vbtns">
-          <button class="vbtn" data-v="confirmee">Confirmer</button>
-          <button class="vbtn" data-v="corrigee">Corriger</button>
-          <button class="vbtn" data-v="rejetee">Rejeter</button>
+          <button class="vbtn" data-v="confirmee" aria-pressed="false">Confirmer</button>
+          <button class="vbtn" data-v="corrigee" aria-pressed="false">Corriger</button>
+          <button class="vbtn" data-v="rejetee" aria-pressed="false">Rejeter</button>
         </div>
-        <div class="vout" id="vOut"></div>
+        <div class="vout" id="vOut" role="status" aria-live="polite"></div>
       </div>
     </div>
 
@@ -342,7 +347,7 @@
       <div class="card t-navy"><span class="num">01 — VOIR</span><h3>Signalement agent</h3><p>Un humain sur le terrain remonte ce qu'il observe, en quelques secondes depuis un téléphone.</p></div>
       <div class="card t-amber"><span class="num">02 — VOIR</span><h3>Remote ID</h3><p>La carte d'identité qu'un drone récent diffuse en vol : position, altitude. Captable par un simple téléphone, jusqu'à plusieurs kilomètres.</p></div>
       <div class="card t-teal"><span class="num">03 — VOIR</span><h3>Signature radio</h3><p>Repère l'émission d'un appareil même quand aucune identité n'est déclarée. C'est la couche qui répond au drone qui cherche à passer inaperçu.</p></div>
-      <div class="card t-violet"><span class="num">04 — RECOUPER</span><h3>Corrélation</h3><p>Rapproche les signaux par lieu, heure et récurrence. Un motif invisible signal par signal devient lisible.</p></div>
+      <div class="card t-violet"><span class="num">04 — RECOUPER</span><h3>Corrélation</h3><p>Rapproche aujourd'hui des sources distinctes par lieu et heure. Les identifiants et trajectoires viendront après la preuve Remote ID.</p></div>
     </div>
   </div>
 </section>
@@ -352,27 +357,27 @@
   <div class="wrap reveal">
     <div class="eyebrow">Le cœur technique</div>
     <h2>Un détecteur voit un instant. <em>Une trace raconte une habitude.</em></h2>
-    <p class="sublede">Chaque source produit des champs précis. Ce sont eux, et non l'événement brut, qui rendent la corrélation possible.</p>
+    <p class="sublede">Chaque source compatible peut produire des champs précis. Le moteur actuel utilise le lieu et le temps ; les autres dimensions sont affichées comme étapes prévues.</p>
 
     <table>
       <tr><th style="width:20%">Source</th><th>Ce qu'elle produit réellement</th><th style="width:18%">Cadence</th></tr>
-      <tr><td>Remote ID</td><td>Numéro de série de l'appareil, latitude, longitude, altitude, hauteur sol, vitesse, cap, statut au sol ou en vol, horodatage — et <strong>la position du télépilote</strong>.</td><td>Position au moins <strong>1×/seconde</strong></td></tr>
+      <tr><td>Remote ID</td><td>Identifiant ou session, latitude, longitude, altitude, vitesse, cap, horodatage et, selon le mode, position de contrôle ou point de décollage.</td><td>Selon appareil et protocole</td></tr>
       <tr><td>Signature radio</td><td>Fréquence, largeur de bande, puissance reçue, durée d'émission, heure. Aucune identité, aucune position précise.</td><td>Continu</td></tr>
       <tr><td>Signalement agent</td><td>Heure, zone, description, identifiant de l'agent, niveau de confiance déclaré.</td><td>À l'événement</td></tr>
     </table>
 
-    <h3 style="margin-top:34px;font-size:20px">Six dimensions corrélables — dont trois qu'aucun détecteur ne voit seul</h3>
+    <h3 style="margin-top:34px;font-size:20px">Six dimensions prévues — deux sont utilisées aujourd'hui</h3>
     <div class="dims">
       <div class="dim"><span class="dnum">1</span><div><strong>Le temps</strong><p>Commun aux trois sources. La base de tout rapprochement.</p></div><span class="dtag">Détecteur</span></div>
       <div class="dim"><span class="dnum">2</span><div><strong>Le lieu, à précisions différentes</strong><p>Un point GPS, une proximité radio, une zone décrite. Rapprocher ces trois échelles est le travail du moteur.</p></div><span class="dtag">Détecteur</span></div>
-      <div class="dim hi"><span class="dnum">3</span><div><strong>L'identifiant persistant</strong><p>Le numéro de série révèle que <em>le même appareil</em> est revenu. Trois passages en une semaine ne sont plus un incident : c'est un motif.</p></div><span class="dtag on">Corrélation</span></div>
-      <div class="dim hi"><span class="dnum">4</span><div><strong>La position du télépilote</strong><p>Le drone diffuse où se trouve son pilote. Si le même point de décollage ressort sur plusieurs vols, on n'observe plus un appareil : on identifie un lieu récurrent.</p></div><span class="dtag on">Corrélation</span></div>
-      <div class="dim"><span class="dnum">5</span><div><strong>Le cap et la trajectoire</strong><p>Croisés avec les axes de piste, ils distinguent un survol de passage d'une approche répétée.</p></div><span class="dtag">Détecteur</span></div>
-      <div class="dim hi"><span class="dnum">6</span><div><strong>L'écart entre les couches</strong><p>La radio signale une émission, le Remote ID ne renvoie rien : appareil non coopératif, ou identité falsifiée. <strong>La contradiction entre deux sources est le signal de plus forte valeur</strong> — et elle n'existe qu'en corrélant.</p></div><span class="dtag on">Corrélation</span></div>
+      <div class="dim hi"><span class="dnum">3</span><div><strong>L'identifiant persistant</strong><p>Une future réception Remote ID permettrait de vérifier si un même identifiant revient. Cette dimension n'est pas encore traitée par le moteur actuel.</p></div><span class="dtag on">Prévu</span></div>
+      <div class="dim hi"><span class="dnum">4</span><div><strong>La position de contrôle ou de décollage</strong><p>Une répétition au même point pourrait révéler un lieu récurrent, sous réserve de minimisation et d'accès restreint.</p></div><span class="dtag on">Prévu</span></div>
+      <div class="dim"><span class="dnum">5</span><div><strong>Le cap et la trajectoire</strong><p>Ils pourraient être croisés avec les axes de piste après validation de la qualité des mesures.</p></div><span class="dtag">Prévu</span></div>
+      <div class="dim hi"><span class="dnum">6</span><div><strong>L'écart entre les couches</strong><p>Une émission RF sans Remote ID correspondant deviendrait une contradiction à examiner, jamais une preuve automatique de falsification.</p></div><span class="dtag on">Prévu</span></div>
     </div>
 
     <div class="warn" style="margin-top:26px">
-      <strong>C'est ici que se situe l'apport de VIGIE.</strong> Les dimensions 3, 4 et 6 sont invisibles à un détecteur, quel qu'en soit le prix : elles n'apparaissent qu'en croisant des traces dans la durée. Un système mieux équipé détectera mieux ; il ne dira pas pour autant que c'est le même appareil, parti du même endroit, pour la troisième fois.
+      <strong>C'est ici que se situe l'apport visé par VIGIE.</strong> Le moteur actuel démontre le rapprochement lieu/heure. Les dimensions 3, 4 et 6 décrivent l'étape suivante, conditionnée par une réception Remote ID et RF réellement documentée.
     </div>
 
     <p style="font-size:13.5px;color:var(--soft);margin-top:16px">La même mécanique vaut hors du domaine drone : un signalement d'agent porte lui aussi un horodatage, une zone et une source dont la fiabilité se mesure dans la durée. Le moteur ne sait pas s'il traite une intrusion aérienne ou un accès irrégulier — il traite des traces.</p>
@@ -428,13 +433,13 @@
 
     <div class="qa"><div class="q">2. En quoi est-ce innovant ?</div><p>Les solutions existantes détectent ; VIGIE trace et corrèle. Nous n'inventons ni le Remote ID, ni l'ESP32, ni l'IA — l'innovation est l'intégration locale de sources hétérogènes dans une chaîne auditable, sans dépendre d'un parc de capteurs coûteux.</p></div>
 
-    <div class="qa"><div class="q">3. Est-ce que ça marche ?</div><p>Cinq blocs sur cinq implémentés, 839 lignes exécutées, 600 signalements FAA réels ingérés, moteur de corrélation testé. Le dépôt est public et vérifiable. Ce qui n'est pas prouvé — la réception Remote ID réelle — est marqué comme tel.</p></div>
+    <div class="qa"><div class="q">3. Est-ce que ça marche ?</div><p>Oui, au niveau démonstrateur logiciel : corrélation lieu/heure, ingestion externe, repli prudent de classification et parcours de décision sont testables dans le dépôt. La capture Remote ID, la base sécurisée intégrée et les performances terrain restent des jalons distincts.</p></div>
 
-    <div class="qa"><div class="q">4. Est-ce faisable dans le calendrier ?</div><p>Les niveaux L0 et L1 sont atteints. L2 ne demande qu'un téléphone Android. L3 dépend d'une carte à quelques euros. Le premier jalon est conçu sans achat obligatoire.</p></div>
+    <div class="qa"><div class="q">4. Est-ce faisable dans le calendrier ?</div><p>L0 est atteint et L1 est partiellement atteint avec des tests reproductibles. L2 commence par une réception Android ou ESP32 documentée ; L3 dépend ensuite d'un essai autorisé avec partenaire.</p></div>
 
-    <div class="qa"><div class="q">5. L'équipe est-elle capable de livrer ?</div><p>Quatre membres : un étudiant en médecine développeur, auteur d'un système de veille automatisée en production ; deux étudiants de l'IAI Togo ; un étudiant d'IPNET. La preuve n'est pas déclarative : 27 versions successives du dépôt sont publiques.</p></div>
+    <div class="qa"><div class="q">5. L'équipe est-elle capable de livrer ?</div><p>Quatre membres couvrent coordination, logiciel, données, électronique et présentation. Le dépôt public conserve l'historique des versions, les tests et les limites ; les contributions de chaque membre devront désormais apparaître dans les Pull Requests.</p></div>
 
-    <div class="qa"><div class="q">6. Quel impact pour le Togo et l'ANAC ?</div><p>Une capacité nationale auditable, formée localement, extensible aux 7 aéroports du pays sans coût matériel additionnel par site — plutôt qu'une dépendance à un fournisseur étranger dont la logique de décision reste opaque.</p></div>
+    <div class="qa"><div class="q">6. Quel impact pour le Togo et l'ANAC ?</div><p>Une méthode nationale auditable et formée localement, conçue pour s'adapter progressivement aux sept aéroports référencés. Le coût de réception, de maintenance et de gouvernance devra être évalué séparément pour chaque site.</p></div>
 
     <div class="qa"><div class="q">7. Quels risques, et comment les gérez-vous ?</div><p>Quatre risques identifiés et traités par conception : fausse corrélation, couverture incomplète, confidentialité, effet sur l'exploitation. Chacun a une réponse documentée, pas une promesse.</p></div>
 
@@ -465,8 +470,9 @@
   <div class="wrap">
     <strong>VIGIE — nom de travail provisoire.</strong>
     Fiche de projet, CNISAI / AVSEC 2026, catégorie Innovation libre, Lomé / DXXX.<br />
-    Réception passive uniquement. Aide à la décision, jamais décision autonome.
-    Les sources, tests, autorisations et identités des membres restent à compléter avant dépôt officiel.
+    Réception passive uniquement. Aide à la décision, jamais décision autonome.<br />
+    <a href="https://github.com/josephhounto-sudo/VIGIE">Dépôt et tests publics</a> ·
+    <a href="https://github.com/josephhounto-sudo/VIGIE/blob/main/docs/ETAT_DU_PROTOTYPE.md">État exact du prototype</a>
   </div>
 </footer>
 
@@ -529,7 +535,10 @@ function render(k){
   document.getElementById('scWin').textContent   = s.win;
   document.getElementById('vAsk').textContent    = s.ask;
   document.getElementById('vOut').textContent    = '';
-  document.querySelectorAll('.vbtn').forEach(function(b){ b.classList.remove('sel'); });
+  document.querySelectorAll('.vbtn').forEach(function(b){
+    b.classList.remove('sel');
+    b.setAttribute('aria-pressed','false');
+  });
 
   var tl = document.getElementById('tl');
   tl.innerHTML = '';
@@ -558,8 +567,12 @@ function play(){
 
 document.querySelectorAll('.tab').forEach(function(t){
   t.addEventListener('click', function(){
-    document.querySelectorAll('.tab').forEach(function(x){ x.classList.remove('on'); });
+    document.querySelectorAll('.tab').forEach(function(x){
+      x.classList.remove('on');
+      x.setAttribute('aria-pressed','false');
+    });
     t.classList.add('on');
+    t.setAttribute('aria-pressed','true');
     render(t.dataset.sc);
   });
 });
@@ -572,8 +585,12 @@ var VTXT = {
 };
 document.querySelectorAll('.vbtn').forEach(function(b){
   b.addEventListener('click', function(){
-    document.querySelectorAll('.vbtn').forEach(function(x){ x.classList.remove('sel'); });
+    document.querySelectorAll('.vbtn').forEach(function(x){
+      x.classList.remove('sel');
+      x.setAttribute('aria-pressed','false');
+    });
     b.classList.add('sel');
+    b.setAttribute('aria-pressed','true');
     document.getElementById('vOut').textContent = VTXT[b.dataset.v];
   });
 });

@@ -1,0 +1,24 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Environnements et secrets locaux
+.venv/
+venv/
+.env
+.env.*
+!.env.example
+
+# Fichiers générés par les démonstrations
+evenements_simules.json
+src/dashboard/evenements_simules.json
+
+# Éditeurs et système
+.DS_Store
+.idea/
+.vscode/

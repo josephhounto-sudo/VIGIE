@@ -29,7 +29,8 @@ RE_TYPE_EVENEMENT = re.compile(r"/UAS (SIGHTING|INCIDENT)/")
 RE_HEURE = re.compile(r"/(\d{4})([CEMPA])/")  # heure locale + fuseau (C/E/M/P/A)
 RE_ALTITUDE = re.compile(r"WHILE \w+ BOUND AT ([\d,]+) FEET")
 RE_DISTANCE_AEROPORT = re.compile(r"(\d+(?:\.\d+)?)\s+([NSEW]{1,3})\s+([A-Z]{3,4})\.")
-RE_EVASIF = re.compile(r"NO EVASIVE ACTION TAKEN", re.IGNORECASE)
+RE_EVASIF_NON = re.compile(r"NO EVASIVE ACTION TAKEN", re.IGNORECASE)
+RE_EVASIF_OUI = re.compile(r"(?<!NO )EVASIVE ACTION(?: WAS)? TAKEN", re.IGNORECASE)
 
 FUSEAUX = {"E": "America/New_York", "C": "America/Chicago",
            "M": "America/Denver", "P": "America/Los_Angeles", "A": "America/Anchorage"}
@@ -68,7 +69,10 @@ def extraire_champs(summary):
         champs["direction"] = m.group(2)
         champs["code_aeroport"] = m.group(3)
 
-    champs["evasif"] = not bool(RE_EVASIF.search(summary))
+    if RE_EVASIF_NON.search(summary):
+        champs["evasif"] = False
+    elif RE_EVASIF_OUI.search(summary):
+        champs["evasif"] = True
 
     return champs
 
@@ -92,7 +96,11 @@ def construire_evenement(row_date, state, city, summary):
         "latitude": None,   # geocodage volontairement non fait ici
         "longitude": None,
         "horodatage": horodatage,
+        "nature": "a_verifier",
+        "criticite": 20,
+        "justification": "Donnée externe à examiner ; aucune conclusion opérationnelle",
         "statut": "a_verifier",
+        "statut_preuve": "externe",
     }
 
 

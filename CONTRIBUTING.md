@@ -9,7 +9,7 @@
 
 ## Avant de coder
 
-1. Lire `docs/ARCHITECTURE.md` en entier (10 minutes, aucun
+1. Lire `docs/ARCHITECTURE.md` puis `docs/ETAT_DU_PROTOTYPE.md` (10 minutes, aucun
    prérequis technique).
 2. Regarder `schema/migration.sql` — c'est le contrat que tout le
    monde respecte. Ne jamais créer de table parallèle.
@@ -20,6 +20,15 @@
    projet à chaque session.
 4. Si tu utilises Manus : les recherches vont dans `docs/`, jamais de
    code de production généré sans relecture humaine avant intégration.
+
+Installer ensuite l'environnement de développement :
+
+```bash
+python -m venv .venv
+source .venv/bin/activate
+python -m pip install -e '.[dev]'
+PYTHONPATH=src python -m unittest discover -s tests -v
+```
 
 ## Règle n°1 — une tâche, un fichier, une personne
 
@@ -72,15 +81,14 @@ bibliothèque Leaflet déjà utilisée pour la carte). Tester avec
 
 **Prérequis** : HTML/JS/CSS de base. Aucun framework à apprendre.
 
-### Tâche C — Tests et scénarios de simulation
+### Tâche C — Étendre les tests et scénarios de simulation
 
 **Fichiers** : `src/simulate/` et nouveaux fichiers de test uniquement.
 
-**Objectif** : enrichir `generate_test_events.py` avec plus de
-scénarios réalistes (cas limites : événements simultanés au même
-point, événements très espacés, doublons), et écrire quelques tests
-simples pour vérifier que `correlation_engine.py` se comporte
-correctement sur ces cas.
+**Objectif** : enrichir les tests existants avec des scénarios étiquetés
+(cas limites : événements simultanés au même point, événements très
+espacés, doublons, données invalides, fuseaux horaires). Chaque scénario
+doit indiquer quels liens sont attendus afin de mesurer le bruit.
 
 **Prérequis** : Python de base. Aucun risque de casser autre chose —
 ce périmètre ne touche jamais le code de production.
@@ -94,6 +102,18 @@ ce périmètre ne touche jamais le code de production.
    rapide.
 4. Tester localement avant d'ouvrir la PR (voir chaque tâche
    ci-dessus pour la commande de test).
+
+Commandes minimales avant livraison :
+
+```bash
+ruff check src tests
+PYTHONPATH=src python -m unittest discover -s tests -v
+python -m compileall -q src
+```
+
+Ne jamais inclure dans une PR : clé API, donnée personnelle, observation
+de sûreté réelle non autorisée, fichier `.env`, cache Python ou export de
+base. Voir `SECURITY.md`.
 
 ## En cas de blocage
 

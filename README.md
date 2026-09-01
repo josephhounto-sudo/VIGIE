@@ -1,107 +1,132 @@
-# VIGIE — Plateforme de corrélation d'événements de sûreté aéroportuaire
+# VIGIE — Corréler pour mieux vérifier
 
-> Candidature CNISAI/AVSEC 2026 (ANAC Togo), catégorie Innovation libre.
+VIGIE est un prototype en deux volets pour la sûreté aéroportuaire :
 
-## 🚀 Pour commencer
+1. **réception passive** de signaux Remote ID, puis exploration RF générique ;
+2. **logiciel de recoupement** qui normalise les événements, propose des liens
+   explicables et conserve la décision d'un responsable humain.
 
-| Besoin | Aller à |
-|---|---|
-| Rattraper le projet en 5 minutes | [`docs/journal.md`](docs/journal.md) |
-| Comprendre VIGIE sans bagage technique | [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) |
-| Voir la démonstration en ligne | [vigie.josephhounto.workers.dev](https://vigie.josephhounto.workers.dev/) |
-| Un mot technique n'est pas clair | [`docs/glossaire.md`](docs/glossaire.md) |
+Le projet ne neutralise aucun drone et ne prend aucune décision autonome.
 
-## 📂 Dossier officiel de candidature
+[Démonstration en ligne](https://vigie.josephhounto.workers.dev/) ·
+[Architecture](docs/ARCHITECTURE.md) ·
+[État du prototype](docs/ETAT_DU_PROTOTYPE.md) ·
+[Dossier de candidature](dossier/README.md)
 
-**Les documents à jour, prêts pour le dépôt, sont dans [`dossier/`](dossier/README.md)**
-— statut de chacune des 8 pièces exigées par le règlement, avec liens
-directs vers les fichiers Word. C'est le point d'entrée unique pour
-tout ce qui concerne le dépôt.
+## État vérifiable
 
-## 🧭 Comprendre le projet en profondeur
+| Élément | État actuel | Preuve dans le dépôt |
+|---|---|---|
+| Contrat d'événement | Implémenté | `schema/migration.sql` |
+| Corrélation lieu/heure | Exécutable et testée localement | `src/correlation/`, `tests/` |
+| Ingestion FAA | Parseur testable sur un fichier fourni séparément | `src/ingest/`, `tests/` |
+| Classification assistée par IA | Implémentée avec repli prudent | `src/classification/`, `tests/` |
+| Interface de signalement | Démonstrateur local, sans backend | `src/interface/` |
+| Carte de contexte | Démonstrateur sur JSON local | `src/dashboard/` |
+| Réception Remote ID réelle | À valider sur le terrain | `src/capture/remote_id_capture_stub.py` |
+| Détection RF générique | Extension de recherche | `src/capture/rf_capture_stub.py` |
+| Pipeline intégré et base réelle | Non connecté | feuille de route |
 
-| Besoin | Aller à |
-|---|---|
-| Voir le système en action (scénarios) | [`docs/cas_usage.md`](docs/cas_usage.md) |
-| Un précédent réel (Gatwick, 2018) | [`docs/cas_reel_gatwick.md`](docs/cas_reel_gatwick.md) |
-| Un précédent réel africain (OR Tambo) | [`docs/cas_reel_or_tambo.md`](docs/cas_reel_or_tambo.md) |
-| Où en est chaque brique, par niveau de maturité (L0-L5) | [`docs/feuille_route.md`](docs/feuille_route.md) |
-| Les règles pour remplir un événement | [`docs/contrat_evenement.md`](docs/contrat_evenement.md) |
-| Ce qu'il ne faut jamais faire | [`docs/ethique.md`](docs/ethique.md) |
-| Règles et calendrier du concours | [`docs/programme_concours.md`](docs/programme_concours.md) |
+Les données affichées sur le site sont simulées ou externes et portent un statut
+de preuve. Aucune donnée de sûreté togolaise réelle n'est publiée.
 
-## 🔧 Volet matériel (RF / drones)
+## Architecture en deux volets
 
-| Besoin | Aller à |
-|---|---|
-| Faire quelque chose de concret ce soir, sans bagage technique | [`docs/guide_pratique_rf.md`](docs/guide_pratique_rf.md) |
-| Comprendre les choix RF (pourquoi) | [`docs/construction_rf.md`](docs/construction_rf.md) |
-| Nomenclature et budget matériel | [`docs/materiel.md`](docs/materiel.md) |
-| Protocole avant un test terrain réel | [`docs/protocole_test.md`](docs/protocole_test.md) |
-| Exercice pédagogique à coût nul (réflecteur radio) | [`docs/guide_diy_reflecteur.md`](docs/guide_diy_reflecteur.md) |
-
-## 💻 Volet logiciel — contribuer
-
-| Besoin | Aller à |
-|---|---|
-| Tâches prêtes à prendre, sans conflit entre contributeurs | [`CONTRIBUTING.md`](CONTRIBUTING.md) |
-| Skill Claude (protocole de travail, à installer une fois) | [`.claude-skills/vigie-project`](.claude-skills/vigie-project/SKILL.md) |
-
-## 🔍 Recherche et données
-
-| Besoin | Aller à |
-|---|---|
-| Quelles données pour tester VIGIE | [`docs/donnees.md`](docs/donnees.md) |
-| Prochaines recherches Manus à lancer | [`docs/manus_recherches.md`](docs/manus_recherches.md) |
-
-## Principe en une phrase
-
-Collecter des signaux hétérogènes (signalement humain, alerte capteur RF),
-les classer par nature/criticité via IA, les recouper dans le temps et
-l'espace, et produire une carte de risque vivante + une traçabilité
-décisionnelle — même architecture de résilience que Sentinelle (cascade
-Groq → Gemini → repli), transposée à la sûreté aéroportuaire.
-
-## Structure du repo
-
+```mermaid
+flowchart TD
+    A["Volet matériel\nRemote ID / RF passive"] --> C["Contrat d'événement"]
+    B["Volet terrain\nSignalement agent"] --> C
+    C --> D["Classification prudente"]
+    D --> E["Corrélation explicable"]
+    E --> F["Décision humaine tracée"]
 ```
-vigie/
-├── schema/                  # LE CONTRAT — toute source doit produire du JSON conforme
-│   └── migration.sql        # Schéma Supabase (tables + vue de risque)
+
+Le moteur actuel rapproche uniquement le **lieu** et le **temps**. Les identifiants
+Remote ID, positions de contrôle, trajectoires et contradictions entre couches sont
+des capacités prévues, pas encore revendiquées comme implémentées.
+
+## Installation
+
+Prérequis : Python 3.11 ou plus récent.
+
+```bash
+python -m venv .venv
+source .venv/bin/activate
+python -m pip install --upgrade pip
+python -m pip install -e '.[dev]'
+PYTHONPATH=src python -m unittest discover -s tests -v
+```
+
+### Démonstration locale
+
+```bash
+python src/simulate/generate_test_events.py --seed 2026 --count 12 \
+  --output src/dashboard/evenements_simules.json
+python -m http.server 8000 --directory src/dashboard
+```
+
+Ouvrir ensuite `http://localhost:8000`.
+
+### Classification sans clé
+
+```bash
+python src/classification/classifier.py
+```
+
+Sans clés API, le module retourne volontairement `a_verifier` avec un score prudent.
+Les clés éventuelles doivent être configurées dans l'environnement :
+`GROQ_API_KEY` et `GEMINI_API_KEY`.
+
+Les tests principaux n'ont besoin d'aucun service externe :
+
+```bash
+PYTHONPATH=src python -m unittest discover -s tests -v
+```
+
+## Structure du dépôt
+
+```text
+VIGIE/
+├── .github/workflows/       # intégration continue
+├── data/                    # référentiels publics et documentés
+├── docs/                    # architecture, preuves, limites et protocoles
+├── dossier/                 # pièces de candidature
+├── schema/                  # contrat SQL commun, sécurisé par défaut
+├── site/                    # fiche publique et démonstration
 ├── src/
-│   ├── capture/              # VOLET MATÉRIEL — capteur RF (RTL-SDR)
-│   │   └── rf_capture_stub.py
-│   ├── classification/       # VOLET LOGICIEL — cascade IA nature/criticité
-│   │   └── classifier_stub.py
-│   ├── correlation/          # VOLET LOGICIEL — recoupement temps/lieu
-│   └── dashboard/            # VOLET LOGICIEL — carte de risque (à construire)
-└── docs/
-    └── materiel.md           # Nomenclature + budget capteur RF
+│   ├── capture/             # volet matériel, encore expérimental
+│   ├── classification/      # aide au classement, jamais décision finale
+│   ├── correlation/         # rapprochement déterministe
+│   ├── dashboard/           # carte locale de démonstration
+│   ├── ingest/              # adaptateurs de données externes
+│   ├── interface/           # signalement agent local
+│   └── simulate/            # scénarios reproductibles
+├── tests/                   # tests unitaires et de contrat
+├── pyproject.toml           # dépendances et outils de qualité
+└── SECURITY.md              # limites de sécurité avant pilote réel
 ```
 
-## Qui touche quoi
+## Données et preuve
 
-- **Volet matériel** : uniquement `src/capture/`. Doit produire des
-  événements conformes à `schema/migration.sql`, table `evenements`.
-  N'a pas besoin de connaître la classification ni la corrélation pour
-  avancer.
-- **Volet logiciel** : `src/classification/`, `src/correlation/`,
-  `src/dashboard/`. Peut développer et tester avec des événements
-  simulés respectant le même schéma, sans attendre que le capteur RF
-  physique existe.
-- **Volet dossier** : ne touche pas le code. Référence ce repo dans la
-  note conceptuelle comme preuve de structuration technique.
+- Les référentiels togolais sont décrits dans [`data/README.md`](data/README.md).
+- Les données FAA servent uniquement à vérifier l'extraction de texte externe.
+- Un import FAA sans coordonnées ne valide pas la corrélation spatio-temporelle.
+- La simulation fournit une vérité terrain contrôlée ; elle n'est jamais présentée
+  comme une observation réelle.
 
-## Règle non négociable
+## Contribuer
 
-Aucun code de neutralisation/brouillage. Le système s'arrête à
-détection + alerte + traçabilité — cohérent avec le règlement du
-concours (objets inertes uniquement) et avec le cadre légal (le
-brouillage actif est réservé à des agences fédérales spécifiques dans
-la plupart des juridictions consultées).
+Lire [`CONTRIBUTING.md`](CONTRIBUTING.md), créer une branche courte, ajouter ou
+mettre à jour les tests, puis ouvrir une Pull Request. Toute évolution du contrat
+commun ou du périmètre matériel doit être discutée avant implémentation.
 
-## Vibe coding
+## Limites non négociables
 
-Comme pour Sentinelle : le code généré ici est un squelette à adapter,
-pas un produit fini. Chaque stub contient des TODO explicites plutôt
-que du faux détail qui donnerait une illusion d'avancement.
+- aucune neutralisation, émission ou prise de contrôle ;
+- aucune donnée réelle avec les droits de prototype ;
+- aucune confirmation opérationnelle produite par un modèle d'IA ;
+- aucune confusion entre donnée mesurée, rapportée, simulée ou externe ;
+- aucune clé ou donnée personnelle dans le dépôt.
+
+Le vocabulaire de maturité utilisé par VIGIE est détaillé dans
+[`docs/ETAT_DU_PROTOTYPE.md`](docs/ETAT_DU_PROTOTYPE.md).

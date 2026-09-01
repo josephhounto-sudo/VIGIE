@@ -11,10 +11,10 @@
 | Fichier | Contenu | Lignes |
 |---|---|---|
 | `togo_airports.csv` | Les 7 aéroports du Togo, coordonnées incluses | 7 |
-| `togo_airport_frequencies.csv` | Fréquences radio associées | 5 |
+| `togo_airport_frequencies.csv` | Fréquences radio associées ; valeurs non officielles à vérifier | 5 |
 | `togo_runways.csv` | Pistes | 2 |
 | `togo_regions.csv` | Subdivisions administratives togolaises | 6 |
-| `countries.csv` | Référentiel mondial des codes pays (léger, gardé entier — nécessaire pour interpréter `iso_country`) | 250 |
+| `countries.csv` | Référentiel mondial des codes pays (léger, gardé entier — nécessaire pour interpréter `iso_country`) | 249 |
 
 ## Les 7 aéroports du Togo
 
@@ -32,6 +32,12 @@
 exactement aux coordonnées déjà utilisées par défaut dans
 `src/dashboard/index.html` et `src/simulate/generate_test_events.py` —
 aucune correction nécessaire.
+
+La valeur AFIS de DXNG publiée dans la source secondaire était `658,6 MHz`,
+incompatible avec la bande usuelle de communication civile air-sol. Elle est
+conservée comme ligne de référentiel mais laissée vide jusqu'à vérification dans
+une publication aéronautique officielle. Aucune fréquence de ce fichier ne doit
+être utilisée pour un essai radio sans validation ANAC/ASECNA.
 
 ## Limite à assumer
 

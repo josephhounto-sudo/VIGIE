@@ -7,7 +7,7 @@ Page unique, autonome, déployée sur Cloudflare Pages.
 | Fichier | Rôle |
 |---|---|
 | `index.html` | La page complète — images et styles intégrés, aucune dépendance externe sauf les polices Google |
-| `fiche_vigie.pdf` | La fiche de candidature, accessible en téléchargement direct depuis le site |
+| `fiche_vigie.pdf` | Export du 30/08/2026 à régénérer après les corrections éditoriales du 01/09 |
 
 ## Déploiement Cloudflare (connecté à ce dépôt)
 
@@ -58,7 +58,10 @@ redéploie seul. Pas d'upload manuel.
 
 ## Règle de contenu
 
-Le site et la fiche PDF doivent rester cohérents entre eux et avec la
+Le site, la fiche PDF et les documents de candidature doivent rester cohérents avec la
 documentation du dépôt (`docs/`). Aucun chiffre de performance de
 détection ne doit y figurer tant qu'aucune mesure réelle n'a été
 produite — voir `docs/ethique.md` et `docs/contrat_evenement.md`.
+
+L'état courant du prototype est défini dans `docs/ETAT_DU_PROTOTYPE.md`.
+Tout export PDF doit être régénéré à partir de cet état avant diffusion.

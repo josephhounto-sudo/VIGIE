@@ -20,8 +20,8 @@
 </head>
 <body>
 
-<div class="status-bar" id="status">Chargement des evenements...</div>
-<div id="map"></div>
+<div class="status-bar" id="status" role="status" aria-live="polite">Chargement des événements...</div>
+<div id="map" role="application" aria-label="Carte des événements VIGIE"></div>
 <div class="legend">
   <div><span style="background:#2ecc71"></span>Criticite faible (0-40)</div>
   <div><span style="background:#f39c12"></span>Criticite moyenne (40-70)</div>
@@ -79,14 +79,31 @@ function afficherEvenements(evenements) {
       color: "#ffffff",
       weight: 1.5,
     }).addTo(map);
-    marker.bindPopup(
-      "<b>" + (e.titre || "Evenement") + "</b><br/>" +
-      "Source : " + (e.source_type || "inconnue") + "<br/>" +
-      "Nature : " + (e.nature || "non classee") + "<br/>" +
-      "Criticite : " + (e.criticite ?? "n/a") + "<br/>" +
-      (e.description ? e.description + "<br/>" : "") +
-      "<small>" + (e.horodatage || "") + "</small>"
-    );
+    const popup = document.createElement("div");
+    const titre = document.createElement("strong");
+    titre.textContent = e.titre || "Événement";
+    popup.appendChild(titre);
+
+    [
+      ["Source", e.source_type || "inconnue"],
+      ["Nature", e.nature || "non classée"],
+      ["Criticité", e.criticite ?? "n/a"],
+      ["Preuve", e.statut_preuve || "non disponible"],
+    ].forEach(([label, valeur]) => {
+      const ligne = document.createElement("div");
+      ligne.textContent = label + " : " + valeur;
+      popup.appendChild(ligne);
+    });
+
+    if (e.description) {
+      const description = document.createElement("p");
+      description.textContent = e.description;
+      popup.appendChild(description);
+    }
+    const heure = document.createElement("small");
+    heure.textContent = e.horodatage || "";
+    popup.appendChild(heure);
+    marker.bindPopup(popup);
     comptes++;
   });
   document.getElementById("status").textContent =

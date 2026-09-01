@@ -1,36 +1,33 @@
-# VIGIE — Automatisation (squelette, meme principe que collecte.yml de Sentinelle)
-#
-# INACTIF pour l'instant : declenchement manuel uniquement
-# (workflow_dispatch). Ne pas ajouter de "schedule:" tant que
-# src/classification/ et src/correlation/ contiennent des
-# NotImplementedError -- ca echouerait a chaque execution pour rien.
-#
-# Une fois les stubs remplaces par du code fonctionnel, copier le
-# schema de collecte.yml (Sentinelle) : secrets en env, cron horaire,
-# notification Telegram en fin de run.
-
-name: VIGIE - Pipeline (squelette)
+name: VIGIE - Qualite
 
 on:
+  push:
+    branches: [main]
+  pull_request:
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
-  pipeline:
+  tests:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      PYTHONPATH: src
+
     steps:
-      - name: Recuperer le code
+      - name: Récupérer le code
         uses: actions/checkout@v4
 
       - name: Installer Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
+          cache: pip
 
-      - name: Statut actuel
-        run: |
-          echo "Squelette d'automatisation en place."
-          echo "TODO avant activation reelle :"
-          echo "1. Implementer classifier_groq()/classifier_gemini() dans src/classification/"
-          echo "2. Implementer le moteur de correlation dans src/correlation/"
-          echo "3. Configurer les secrets (SUPABASE_URL, SUPABASE_KEY, GROQ_API_KEY, GEMINI_API_KEY)"
-          echo "4. Remplacer ce step par l'appel reel aux scripts Python"
+      - name: Exécuter les tests
+        run: python -m unittest discover -s tests -v
+
+      - name: Vérifier la syntaxe Python
+        run: python -m compileall -q src

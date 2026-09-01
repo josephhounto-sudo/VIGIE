@@ -8,11 +8,11 @@
 
 ### Couche 1 — Réception Remote ID (MVP, à construire en premier)
 
-Depuis l'obligation FAA (2023) et l'équivalent européen, la majorité des
-drones grand public diffusent leur identité (position, altitude,
-position pilote) en WiFi Beacon ou Bluetooth — norme ASTM F3411 /
-OpenDroneID. Un microcontrôleur ESP32 reçoit ça nativement, sans aucune
-chaîne RF additionnelle.
+Dans les cadres américain et européen, de nombreux drones récents doivent
+diffuser des informations d'identification et de position en WiFi ou
+Bluetooth — norme ASTM F3411 / OpenDroneID. Cette obligation ne doit pas
+être transposée automatiquement au parc togolais. Un microcontrôleur ESP32
+peut recevoir ces diffusions compatibles sans chaîne RF additionnelle.
 
 - Coût : accessible, carte ESP32 seule, sans chaîne RF additionnelle.
 - Firmware recommandé pour la réception : **Mesh-Mapper**
@@ -24,11 +24,11 @@ chaîne RF additionnelle.
   Remote ID), pas un récepteur — ne pas confondre les deux rôles.
   `esp32-c3-remote-id` écarté : son propre dépôt indique qu'il est
   cassé et prévu à la suppression.
-- Portées réelles rapportées : 5 à 15 km selon l'environnement.
+- Portée : variable selon l'appareil, le protocole, l'antenne et
+  l'environnement. VIGIE ne publiera une valeur qu'après mesure documentée.
 - Aucune compétence RF/soudure requise — flashage de firmware existant.
 
-**C'est la voie retenue comme prototype démontrable pour la
-démonstration de décembre.**
+**C'est la voie retenue pour la première validation matérielle.**
 
 ### Couche 2 — Détection d'énergie RF générique (objectif d'extension)
 

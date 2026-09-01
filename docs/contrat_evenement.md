@@ -28,7 +28,7 @@ séparées qui ne se parlent pas entre elles.
 
 ## Règles qui traversent tous les champs
 
-- **Un indice RF ne devient jamais automatiquement un `incident_confirme`.** Le passage d'un statut à un autre plus grave exige une justification et, idéalement, une validation humaine.
+- **Un modèle ne produit jamais un incident confirmé.** Il peut seulement proposer `a_verifier`, `anomalie` ou `fausse_alerte_probable`. Le verdict `confirme` appartient au journal de décision humaine.
 - **Les sources externes restent externes.** Les données FAA et les cas réels (Gatwick, OR Tambo) gardent `statut_preuve = externe` — elles ne deviennent jamais des signalements togolais, même dans une démo.
 - **La corrélation propose, elle ne décide pas.** Le moteur peut suggérer un lien entre deux événements ; un responsable humain confirme, corrige ou rejette ce lien. Voir `docs/ethique.md`.
 

@@ -9,8 +9,8 @@
 
 Un livreur amateur fait voler un drone grand public à proximité de la
 zone aéroportuaire, sans intention hostile. Le drone diffuse son
-Remote ID (sa "carte d'identité en vol") en continu, comme la plupart
-des modèles récents.
+Remote ID (sa "carte d'identité en vol") en continu, parce que ce modèle
+est compatible avec le protocole.
 
 1. Le capteur du Système 1 capte cette diffusion.
 2. Un événement est créé : position, heure, identifiant du drone.
@@ -52,13 +52,12 @@ proche de la clôture.
 1. L'événement est créé avec les caractéristiques du signal.
 2. La classification IA l'examine et, faute d'éléments concordants
    (pas de mouvement caractéristique, signal fixe), le classe
-   "fausse_alerte" plutôt que "incident confirmé".
-3. Il reste visible dans l'historique (traçabilité), mais ne remonte
-   pas comme priorité sur la carte de risque.
+   `fausse_alerte_probable` avec une justification prudente.
+3. Un responsable examine les éléments et décide de rejeter ou non la
+   relation. La proposition et le verdict restent dans l'historique.
 
 **Ce que ça démontre** : le système ne cherche pas à maximiser le
-nombre d'alertes — il cherche à isoler les vraies, cohérent avec le
-garde-fou déjà codé qui recorrige un score incohérent.
+nombre d'alertes. L'IA aide à prioriser ; elle ne clôt pas le dossier.
 
 ## Scénario 4 — Un drone qui refuse de s'identifier (limite assumée du Système 1)
 

@@ -106,8 +106,9 @@ cartes Seeed XIAO ESP32-S3 (deux, une de secours) une fois le budget
 **Ce qui a changé :** l'interface graphique pour qu'un agent terrain
 signale un événement existe maintenant (`src/interface/signalement.html`)
 — formulaire mobile-first, géolocalisation en un clic, format conforme
-au schéma commun. **Les 5 blocs du schéma ont désormais tous une
-interface ou un code fonctionnel**, plus aucun n'est vide.
+au schéma commun. Les cinq blocs ont alors reçu une interface, un code
+ou un stub identifiable ; cela ne signifiait pas encore une intégration
+bout en bout. Cette précision a été ajoutée le 01/09/2026.
 
 **Pourquoi :** c'était le seul bloc du schéma sans aucune interface —
 la carte de risque affichait des événements, mais rien ne permettait
@@ -123,9 +124,9 @@ clés configurées (même dépendance que le dashboard et l'orchestrateur).
 **Ce qui a changé :**
 - Le référentiel des 7 aéroports du Togo est chargé (`data/`) —
   coordonnées de Lomé vérifiées cohérentes avec le reste du projet.
-- Un parseur transforme de vrais signalements de drones (données FAA)
-  en événements au format VIGIE — preuve que le pipeline fonctionne sur
-  de la donnée réelle, pas seulement simulée (`src/ingest/`).
+- Un parseur transforme des lignes FAA en événements au format VIGIE.
+  Cela valide l'adaptateur d'ingestion, pas la corrélation : les lignes
+  importées ne disposent pas de coordonnées (`src/ingest/`).
 - RFUAV (jeu de données RF pour la Couche 2) : licence vérifiée, mais
   1,3 To de données brutes — décision de ne pas l'utiliser tel quel,
   on passera par des modèles déjà entraînés si besoin.

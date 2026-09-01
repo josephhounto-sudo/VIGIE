@@ -46,9 +46,8 @@
 
 <div class="carte">
   <h1>Signaler un événement</h1>
-  <div class="sous-titre">Ce que vous envoyez rejoint la même file que
-    les alertes du capteur RF — inutile de juger la gravité vous-même,
-    le système s'en charge.</div>
+  <div class="sous-titre">Décrivez uniquement les faits observés. Le système
+    proposera une priorité ; un responsable humain examinera et validera la décision.</div>
 
   <form id="formulaire">
     <label for="titre">Que se passe-t-il ? (bref)</label>
@@ -61,18 +60,19 @@
 
     <label>Position</label>
     <div class="position-bloc">
-      <input id="latitude" name="latitude" placeholder="Latitude" inputmode="decimal" required />
-      <input id="longitude" name="longitude" placeholder="Longitude" inputmode="decimal" required />
+      <input id="latitude" name="latitude" type="number" min="-90" max="90" step="any" placeholder="Latitude" inputmode="decimal" required />
+      <input id="longitude" name="longitude" type="number" min="-180" max="180" step="any" placeholder="Longitude" inputmode="decimal" required />
       <button type="button" class="geoloc" id="btn-geoloc">📍 Ma position</button>
     </div>
     <div class="aide">Ou entrez les coordonnées manuellement si le GPS
       n'est pas disponible.</div>
 
-    <label for="source_id">Votre identifiant (agent)</label>
-    <input id="source_id" name="source_id" required placeholder="Ex : agent_02" />
+    <label for="source_id">Identifiant de démonstration</label>
+    <input id="source_id" name="source_id" required maxlength="40" placeholder="Ex : agent_02" />
+    <div class="aide">Ne saisissez ni nom complet, ni numéro personnel. Une future version authentifiée fournira cet identifiant automatiquement.</div>
 
     <button type="submit" class="envoyer" id="btn-envoyer">Envoyer le signalement</button>
-    <div class="statut" id="statut"></div>
+    <div class="statut" id="statut" role="status" aria-live="polite"></div>
   </form>
 </div>
 
@@ -132,7 +132,15 @@ document.getElementById("formulaire").addEventListener("submit", async (e) => {
     longitude: parseFloat(document.getElementById("longitude").value),
     horodatage: new Date().toISOString(),
     statut: "nouveau",
+    statut_preuve: "rapporte",
   };
+
+  if (!Number.isFinite(evenement.latitude) || evenement.latitude < -90 || evenement.latitude > 90 ||
+      !Number.isFinite(evenement.longitude) || evenement.longitude < -180 || evenement.longitude > 180) {
+    statut.textContent = "Coordonnées invalides : latitude −90 à 90, longitude −180 à 180.";
+    statut.className = "statut erreur";
+    return;
+  }
 
   if (!ENVOI_URL) {
     // Mode test : pas de backend configure -- affiche l'evenement au

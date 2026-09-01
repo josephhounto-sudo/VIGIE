@@ -1,8 +1,8 @@
 # Dossier officiel de candidature — CNISAI/AVSEC 2026
 
-> Les documents Word (.docx) de ce dossier sont la version à jour —
-> toujours vérifier ici avant d'utiliser une version reçue par un autre
-> canal (chat, email). Statut au 30/08/2026.
+> Les documents Word datent du 30/08/2026. Après la consolidation technique
+> du 01/09/2026, `docs/ETAT_DU_PROTOTYPE.md` est la source de vérité jusqu'à
+> régénération des exports Word et PDF.
 
 ## Les 8 pièces exigées par le règlement
 
@@ -10,12 +10,12 @@
 |---|---|---|---|
 | 1 | Formulaire en ligne (Tally) | — | À remplir directement sur le site du concours |
 | 2 | Lettre de présentation d'équipe (1 page) | — | ❌ Pas encore rédigée |
-| 3 | **Note conceptuelle** (3-5 pages) | [`note_conceptuelle_VIGIE.docx`](note_conceptuelle_VIGIE.docx) | ✅ À jour |
+| 3 | **Note conceptuelle** (3-5 pages) | [`note_conceptuelle_VIGIE.docx`](note_conceptuelle_VIGIE.docx) | À réaligner sur l'état du 01/09 |
 | 4 | CV succinct par membre (1 page chacun) | — | ⏳ En cours |
 | 5 | Attestation de scolarité ou pièce d'identité | — | À fournir par chaque membre individuellement |
 | 6 | Lettre d'engagement de l'établissement/encadrant | — | ❌ Encadrant non confirmé |
-| 7 | **Déclaration d'éthique et de confidentialité** | [`declaration_ethique_VIGIE.docx`](declaration_ethique_VIGIE.docx) | ✅ À jour |
-| 8 | **Fiche préliminaire d'analyse des risques** | [`fiche_analyse_risques_VIGIE.docx`](fiche_analyse_risques_VIGIE.docx) | ✅ À jour |
+| 7 | **Déclaration d'éthique et de confidentialité** | [`declaration_ethique_VIGIE.docx`](declaration_ethique_VIGIE.docx) | À régénérer et vérifier dans Word/LibreOffice |
+| 8 | **Fiche préliminaire d'analyse des risques** | [`fiche_analyse_risques_VIGIE.docx`](fiche_analyse_risques_VIGIE.docx) | À régénérer et vérifier dans Word/LibreOffice |
 
 **Détail complet du règlement** : [`docs/programme_concours.md`](../docs/programme_concours.md).
 
@@ -24,7 +24,7 @@
 | Support | Où |
 |---|---|
 | Site de démonstration en ligne | [vigie.josephhounto.workers.dev](https://vigie.josephhounto.workers.dev/) |
-| Fiche visuelle (PDF, même contenu que le site) | [`../site/fiche_vigie.pdf`](../site/fiche_vigie.pdf) |
+| Fiche visuelle (export du 30/08 à régénérer) | [`../site/fiche_vigie.pdf`](../site/fiche_vigie.pdf) |
 
 ## Avant tout dépôt
 
